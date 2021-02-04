@@ -1,21 +1,21 @@
 import React from 'react'
-import './MovieDetail.css'
+import './MovieDetails.css'
 
-const MovieDetails = ({movie}) {
+const MovieDetails = ({currentMovie}) => {
   return (
       <>
       <section className='banner'>
-        <h2>{movie.title}</h2>
-        <img src={movie.backdrop_path}/>
+        <h2>{currentMovie.title}</h2>
+        <img src={currentMovie.backdrop_path}/>
       </section>
       <button>Back To The Main Page</button>
       <section className='full-movie-details'>
-        <img src={movie.poster_path} alt={`poster for ${movie.title}`}/>
+        <img src={currentMovie.poster_path} alt={`poster for ${currentMovie.title}`}/>
         <div className='movie-info'>
           <p>Dramedy</p>
-          <p>{movie.average_rating}</p>
+          <p>{currentMovie.average_rating}</p>
           <p>Funner than a barrrel of monke</p>
-          <p>{movie.release_date}</p>
+          <p>{currentMovie.release_date}</p>
           <p>2 Hours</p>
           <p>Budget: $1,000,000</p>
           <p>Revenue: $100,000,000</p>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Homepage from '../Homepage/Homepage'
 import movieData from '../../movieData'
+import MovieDetails from '../MovieDetails/MovieDetails'
 
 class App extends Component {
   constructor() {
@@ -27,14 +28,15 @@ class App extends Component {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <Homepage 
+
+        {!this.state.currentMovie && <Homepage 
         movies={this.state.movies}
         openDetails ={this.openDetails}
-        />
-       {/* {<MovieDetail
-        movies={this.state.movies}
+        />}
+        {<MovieDetails
+        currentMovie={this.state.currentMovie}
         openDetails ={this.openDetails}
-        />} */}
+        />}
         
       </>
     )

@@ -22,8 +22,6 @@ const Homepage = ({ movies, openDetails }) => {
       <section className="posters-container">
         {posterCards}
       </section>
-      <section className='movie-details'>
-      </section>
     </main>
   )
 }
