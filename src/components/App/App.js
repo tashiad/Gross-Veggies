@@ -8,10 +8,24 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      movies: movieData.movies,
+      movies: [],
       currentMovie: ''
     }
   }
+
+  componentDidMount() {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+      .then(response => response.json())
+      .then(data => this.setState({
+        movies: data.movies,
+        currentMovie: ''
+      }))
+      .catch(error => console.log(error))
+  }
+
+  // 500 error handling
+  // loading conditional rendering
+  // single movie fetch & replace placeholder data
 
   clearCurrentMovie = () => {
     this.setState({
@@ -47,7 +61,7 @@ class App extends Component {
             clearCurrentMovie={this.clearCurrentMovie}
           />
         }
-        
+
       </>
     )
   }
