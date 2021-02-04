@@ -25,4 +25,5 @@ const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
       </>
   )
 }
+
 export default MovieDetails

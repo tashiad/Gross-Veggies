@@ -26,6 +26,7 @@ class App extends Component {
   // 500 error handling
   // loading conditional rendering
   // single movie fetch & replace placeholder data
+  // single movie error handling
 
   clearCurrentMovie = () => {
     this.setState({
@@ -34,11 +35,13 @@ class App extends Component {
   }
 
   openDetails = (id) => {
-    const foundMovie = this.state.movies.find(movie => movie.id === id)
-    this.setState({
-      movies: movieData.movies,
-      currentMovie: foundMovie
-    })
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then(response => response.json())
+      .then(data => this.setState({
+        ...this.state.movies,
+        currentMovie: data.movie
+      }))
+      .catch(error => console.log(error))
   }
 
   render() {
