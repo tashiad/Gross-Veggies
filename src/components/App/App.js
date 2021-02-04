@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
 import Homepage from '../Homepage/Homepage'
-import movieData from '../../movieData'
 import MovieDetails from '../MovieDetails/MovieDetails'
 
 class App extends Component {
@@ -25,12 +24,11 @@ class App extends Component {
 
   // 500 error handling
   // loading conditional rendering
-  // single movie fetch & replace placeholder data
   // single movie error handling
 
   clearCurrentMovie = () => {
     this.setState({
-      movies: movieData.movies,
+      ...this.state.movies,
       currentMovie: ''})
   }
 
