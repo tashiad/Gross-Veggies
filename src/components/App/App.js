@@ -34,14 +34,19 @@ class App extends Component {
           <h1>Rancid Tomatillos</h1>
         </header>
 
-        {!this.state.currentMovie && <Homepage 
-        movies={this.state.movies}
-        openDetails ={this.openDetails}
-        />}
-        {<MovieDetails
-        currentMovie={this.state.currentMovie}
-        clearCurrentMovie={this.clearCurrentMovie}
-        />}
+        {!this.state.currentMovie &&
+          <Homepage
+            movies={this.state.movies}
+            openDetails ={this.openDetails}
+          />
+        }
+
+        {this.state.currentMovie &&
+          <MovieDetails
+            currentMovie={this.state.currentMovie}
+            clearCurrentMovie={this.clearCurrentMovie}
+          />
+        }
         
       </>
     )

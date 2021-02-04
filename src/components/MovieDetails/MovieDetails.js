@@ -6,7 +6,7 @@ const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
       <>
       <section className='banner'>
         <h2>{currentMovie.title}</h2>
-        <img className='backdrop'src={currentMovie.backdrop_path}/>
+        <img className='backdrop' src={currentMovie.backdrop_path} alt={`backdrop for ${currentMovie.title}`}/>
       </section>
       <button onClick={clearCurrentMovie}>Back To The Main Page</button>
       <section className='full-movie-details'>
