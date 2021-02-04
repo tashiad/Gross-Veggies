@@ -6,11 +6,11 @@ const MovieDetails = ({currentMovie}) => {
       <>
       <section className='banner'>
         <h2>{currentMovie.title}</h2>
-        <img src={currentMovie.backdrop_path}/>
+        <img className='backdrop'src={currentMovie.backdrop_path}/>
       </section>
       <button>Back To The Main Page</button>
       <section className='full-movie-details'>
-        <img src={currentMovie.poster_path} alt={`poster for ${currentMovie.title}`}/>
+        <img className='details-poster'src={currentMovie.poster_path} alt={`poster for ${currentMovie.title}`}/>
         <div className='movie-info'>
           <p>Dramedy</p>
           <p>{currentMovie.average_rating}</p>
