@@ -17,7 +17,9 @@ const Homepage = ({ movies }) => {
 
   return (
     <main>
-      {posterCards}
+      <section className="posters-container">
+        {posterCards}
+      </section>
     </main>
   )
 }
