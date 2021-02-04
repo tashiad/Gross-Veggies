@@ -13,13 +13,18 @@ class App extends Component {
     }
   }
 
+  clearCurrentMovie = () => {
+    this.setState({
+      movies: movieData.movies,
+      currentMovie: ''})
+  }
+
   openDetails = (id) => {
     const foundMovie = this.state.movies.find(movie => movie.id === id)
     this.setState({
       movies: movieData.movies,
       currentMovie: foundMovie
     })
-    console.log(foundMovie, this.state.currentMovie)
   }
 
   render() {
@@ -35,7 +40,7 @@ class App extends Component {
         />}
         {<MovieDetails
         currentMovie={this.state.currentMovie}
-        openDetails ={this.openDetails}
+        clearCurrentMovie={this.clearCurrentMovie}
         />}
         
       </>
