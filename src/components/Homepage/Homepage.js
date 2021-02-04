@@ -20,7 +20,6 @@ const Homepage = ({ movies, openDetails }) => {
   return (
     <main>
       <section className="posters-container">
-        {!movies.length && <h2 className="loading">Loading...</h2>}
         {posterCards}
       </section>
     </main>

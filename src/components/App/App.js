@@ -8,7 +8,8 @@ class App extends Component {
     super()
     this.state = {
       movies: [],
-      currentMovie: ''
+      currentMovie: '',
+      error: ''
     }
   }
 
@@ -19,11 +20,12 @@ class App extends Component {
         movies: data.movies,
         currentMovie: ''
       }))
-      .catch(error => console.log(error))
+      .catch(error => this.setState({
+        ...this.state.movies,
+        ...this.state.currentMovie,
+        error: error
+      }))
   }
-
-  // 500 error handling
-  // single movie error handling
 
   clearCurrentMovie = () => {
     this.setState({
@@ -38,7 +40,11 @@ class App extends Component {
         ...this.state.movies,
         currentMovie: data.movie
       }))
-      .catch(error => console.log(error))
+      .catch(error => this.setState({
+        ...this.state.movies,
+        ...this.state.currentMovie,
+        error: error
+      }))
   }
 
   render() {
@@ -47,6 +53,13 @@ class App extends Component {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
+        <div className='errors'>
+          {!this.state.movies.length && <h2 className="loading">Loading...</h2>}
+          // hide loading message if error
+          {this.state.error &&
+            <h2 className="error-message">Something went wrong! Couldn't find any movies 🧐</h2>
+          }
+        </div>
 
         {!this.state.currentMovie &&
           <Homepage
