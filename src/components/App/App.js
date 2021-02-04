@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   // 500 error handling
-  // loading conditional rendering
   // single movie error handling
 
   clearCurrentMovie = () => {
