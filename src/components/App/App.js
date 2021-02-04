@@ -7,8 +7,18 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      movies: movieData.movies
+      movies: movieData.movies,
+      currentMovie: ''
     }
+  }
+
+  openDetails = (id) => {
+    const foundMovie = this.state.movies.find(movie => movie.id === id)
+    this.setState({
+      movies: movieData.movies,
+      currentMovie: foundMovie
+    })
+    console.log(foundMovie, this.state.currentMovie)
   }
 
   render() {
@@ -17,7 +27,15 @@ class App extends Component {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <Homepage movies={this.state.movies}/>
+        <Homepage 
+        movies={this.state.movies}
+        openDetails ={this.openDetails}
+        />
+       {/* {<MovieDetail
+        movies={this.state.movies}
+        openDetails ={this.openDetails}
+        />} */}
+        
       </>
     )
   }
