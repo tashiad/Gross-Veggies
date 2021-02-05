@@ -14,6 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //if id then movie detail if not then all posters
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
       .then(response => response.json())
       .then(data => this.setState({
@@ -21,9 +22,10 @@ class App extends Component {
         currentMovie: ''
       }))
       .catch(error => this.setState({
-        ...this.state.movies,
-        ...this.state.currentMovie,
-        error: error
+        // ...this.state.movies,
+        // ...this.state.currentMovie,
+        //this creates new objects, has to rerender, hurts perfomance-- single error
+        error
       }))
   }
 
