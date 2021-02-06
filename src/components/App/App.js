@@ -1,30 +1,46 @@
 import React, { Component } from 'react'
 import './App.css'
 import Homepage from '../Homepage/Homepage'
-import movieData from '../../movieData'
 import MovieDetails from '../MovieDetails/MovieDetails'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      movies: movieData.movies,
-      currentMovie: ''
+      movies: [],
+      currentMovie: '',
+      error: '',
+      loading: true
     }
+  }
+
+  componentDidMount() {
+    // refactor: if id then movie detail if not then all posters
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+      .then(response => response.json())
+      .then(data => this.setState({
+        movies: data.movies,
+        currentMovie: '',
+        error: '',
+        loading: false
+      }))
+      .catch(error => this.setState({ error }))
   }
 
   clearCurrentMovie = () => {
     this.setState({
-      movies: movieData.movies,
+      ...this.state.movies,
       currentMovie: ''})
   }
 
   openDetails = (id) => {
-    const foundMovie = this.state.movies.find(movie => movie.id === id)
-    this.setState({
-      movies: movieData.movies,
-      currentMovie: foundMovie
-    })
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then(response => response.json())
+      .then(data => this.setState({
+        ...this.state.movies,
+        currentMovie: data.movie
+      }))
+      .catch(error => this.setState({ error }))
   }
 
   render() {
@@ -34,15 +50,27 @@ class App extends Component {
           <h1>Rancid Tomatillos</h1>
         </header>
 
-        {!this.state.currentMovie && <Homepage 
-        movies={this.state.movies}
-        openDetails ={this.openDetails}
-        />}
-        {<MovieDetails
-        currentMovie={this.state.currentMovie}
-        clearCurrentMovie={this.clearCurrentMovie}
-        />}
-        
+        <div className='errors'>
+          {this.state.loading && !this.state.error &&
+            <h2 className="loading">Loading...</h2>}
+
+          {this.state.error &&
+            <h2 className="error-message">Something went wrong! Couldn't find any movies 🧐</h2>}
+        </div>
+
+        {!this.state.currentMovie &&
+          <Homepage
+            movies={this.state.movies}
+            openDetails ={this.openDetails}
+          />
+        }
+
+        {this.state.currentMovie &&
+          <MovieDetails
+            currentMovie={this.state.currentMovie}
+            clearCurrentMovie={this.clearCurrentMovie}
+          />
+        }
       </>
     )
   }
