@@ -9,24 +9,22 @@ class App extends Component {
     this.state = {
       movies: [],
       currentMovie: '',
-      error: ''
+      error: '',
+      loading: true
     }
   }
 
   componentDidMount() {
-    //if id then movie detail if not then all posters
+    // refactor: if id then movie detail if not then all posters
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
       .then(response => response.json())
       .then(data => this.setState({
         movies: data.movies,
-        currentMovie: ''
+        currentMovie: '',
+        error: '',
+        loading: false
       }))
-      .catch(error => this.setState({
-        // ...this.state.movies,
-        // ...this.state.currentMovie,
-        //this creates new objects, has to rerender, hurts perfomance-- single error
-        error
-      }))
+      .catch(error => this.setState({ error }))
   }
 
   clearCurrentMovie = () => {
@@ -42,11 +40,7 @@ class App extends Component {
         ...this.state.movies,
         currentMovie: data.movie
       }))
-      .catch(error => this.setState({
-        ...this.state.movies,
-        ...this.state.currentMovie,
-        error: error
-      }))
+      .catch(error => this.setState({ error }))
   }
 
   render() {
@@ -55,12 +49,13 @@ class App extends Component {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
+
         <div className='errors'>
-          {!this.state.movies.length && <h2 className="loading">Loading...</h2>}
-          // hide loading message if error
+          {this.state.loading && !this.state.error &&
+            <h2 className="loading">Loading...</h2>}
+
           {this.state.error &&
-            <h2 className="error-message">Something went wrong! Couldn't find any movies 🧐</h2>
-          }
+            <h2 className="error-message">Something went wrong! Couldn't find any movies 🧐</h2>}
         </div>
 
         {!this.state.currentMovie &&
@@ -76,7 +71,6 @@ class App extends Component {
             clearCurrentMovie={this.clearCurrentMovie}
           />
         }
-
       </>
     )
   }
