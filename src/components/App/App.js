@@ -16,40 +16,40 @@ class App extends Component {
 
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-      .then(response => response.json())
-      //response status codes 
-      //throw
-      //throw
-      //can do above in API calls then below in APP
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('There be Monsters')
+        }
+      })
       .then(data => this.setState({
         movies: data.movies,
         currentMovie: '',
         error: '',
         loading: false
       }))
-      .catch(error => this.setState({error:'Sorry the database of movies could not be reached' }))
+      .catch(error => this.setState({ error: 'Sorry the database of movies could not be reached, please try refreshing the page and if that does not work try again later' }))
   }
 
   openDetails = (id) => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error('There be An Ogre')
+        }
+      })
       .then(data => this.setState({
-
-        //try deleting me
-        ...this.state.movies,
         currentMovie: data.movie
       }))
-      .catch(error => this.setState({ error:'Could not find the movie you were looking for' }))
+      .catch(error => this.setState({ error: 'We could not find the movie you were looking for, please try another film' }))
   }
 
   clearCurrentMovie = () => {
-    this.setState({
-      //delete me
-      // ...this.state.movies,
-      currentMovie: ''})
-  }
+    this.setState({currentMovie: ''})}
 
-  
 
   render() {
     return(
