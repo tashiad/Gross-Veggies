@@ -17,6 +17,8 @@ const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
           <p>{currentMovie.tagline}</p>
           <p>{currentMovie.release_date}</p>
           <p>{currentMovie.runtime}</p>
+
+          {/* format numbers with commas and add labels */}
           <p>{currentMovie.budget}</p>
           <p>{currentMovie.revenue}</p>
         </div>
