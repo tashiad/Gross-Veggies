@@ -145,3 +145,70 @@ gray: #7B7C7C */
     margin-bottom: 7%;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .movie-banner {
+    height: 24vh;
+    margin-bottom: 3%;
+  }
+
+  .movie-info-container {
+    width: 100%;
+  }
+
+  .movie-details-poster {
+    margin: 2% 0 10% 0;
+  }
+
+  .movie-info {
+    margin-left: 4%;
+  }
+
+  .movie-tagline {
+    font-size: 1.5em;
+    font-style: italic;
+    margin: 0 0 5% 0;
+  }
+
+  .movie-overview {
+    margin-top: 3%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .movie-banner {
+    height: 20vh;
+  }
+
+  .movie-title {
+    font-size: 2em;
+  }
+
+  .movie-info-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .movie-details-poster {
+    width: 60%;
+    margin: 2% 5% 5% 5%;
+  }
+
+  .movie-info {
+    text-align: center;
+    margin: 0;
+  }
+
+  .movie-genres-container {
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .movie-overview {
+    width: 80%;
+    margin: 3% 5% 15% 5%;
+    padding: 5%;
+  }
+}
