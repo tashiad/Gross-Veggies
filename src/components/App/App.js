@@ -29,7 +29,7 @@ class App extends Component {
         error: '',
         loading: false
       }))
-      .catch(error => this.setState({ error: 'Sorry the database of movies could not be reached, please try refreshing the page and if that does not work try again later' }))
+      .catch(error => this.setState({ error: 'Unable to reach movie database. Please refresh the page or try again later.' }))
   }
 
   openDetails = (id) => {
@@ -38,18 +38,17 @@ class App extends Component {
         if (response.ok) {
           return response.json()
         } else {
-          throw new Error('There be An Ogre')
+          throw new Error('There be an Ogre')
         }
       })
       .then(data => this.setState({
         currentMovie: data.movie
       }))
-      .catch(error => this.setState({ error: 'We could not find the movie you were looking for, please try another film' }))
+      .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
   }
 
   clearCurrentMovie = () => {
     this.setState({currentMovie: ''})}
-
 
   render() {
     return(
