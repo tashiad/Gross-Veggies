@@ -2,6 +2,7 @@ import React from 'react'
 import './MovieDetails.css'
 
 const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
+  console.log(currentMovie);
   const formattedGenres = currentMovie.genres.map((genre, index) => {
     return (<span key={index} className="genre">{genre}</span>)
   })
@@ -26,15 +27,15 @@ const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
       <section className='full-movie-details'>
         <img className='details-poster'src={currentMovie.poster_path} alt={`poster for ${currentMovie.title}`}/>
         <div className='movie-info'>
-          {currentMovie.genres && <p><span className="label">Genre: </span>{formattedGenres}</p>}
-          {currentMovie.average_rating && <p><span className="tomato">🍅</span>{currentMovie.average_rating}/10 gross veggies</p>}
-          {currentMovie.tagline && <p className="tagline">{currentMovie.tagline}</p>}
-          {currentMovie.release_date && <p><span className="label">Release Date: </span>{formattedDate}</p>}
-          {currentMovie.runtime && <p><span className="label">Runtime: </span>{formattedRuntime}</p>}
-          {currentMovie.budget && <p><span className="label">Budget: </span>{currentMovie.budget.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
-          {currentMovie.revenue && <p><span className="label">Revenue: </span>{currentMovie.revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
+          {!currentMovie.genres ? null : <p><span className="label">Genre: </span>{formattedGenres}</p>}
+          {!currentMovie.average_rating ? null : <p><span className="tomato">🍅</span>{currentMovie.average_rating.toFixed(1)}/10 gross veggies</p>}
+          {!currentMovie.tagline ? null : <p className="tagline">{currentMovie.tagline}</p>}
+          {!currentMovie.release_date ? null : <p><span className="label">Release Date: </span>{formattedDate}</p>}
+          {!currentMovie.runtime ? null : <p><span className="label">Runtime: </span>{formattedRuntime}</p>}
+          {!currentMovie.budget ? null : <p><span className="label">Budget: </span>{currentMovie.budget.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
+          {!currentMovie.revenue ? null : <p><span className="label">Revenue: </span>{currentMovie.revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
         </div>
-        {currentMovie.overview && <p className='movie-overview'>{currentMovie.overview}</p>}
+        {!currentMovie.overview ? null : <p className='movie-overview'>{currentMovie.overview}</p>}
       </section>
     </>
   )
