@@ -5,32 +5,62 @@ black: #1A0D0D
 white: #EDEDEB
 gray: #7B7C7C */
 
-.backdrop {
-  width: 50%;
-}
-
-.details-poster {
-  width: 50%;
-}
-
 .loading {
   color: #DB0404;
 }
 
-.label {
+.movie-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh;
+  background: #1A0D0D;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-backdrop {
+  opacity: 0.4;
+}
+
+.movie-title {
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 5em;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #7B7C7C;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 1%;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+.movie-details-poster {
+  width: 20%;
+}
+
+.movie-details-label {
   font-weight: bold;
 }
 
-.genre {
+.movie-genre {
   color: #EDEDEB;
   background-color: #DB0404;
-  padding: 1%;
+  padding: 0.5% 1% 0.5% 1%;
   margin: 1%;
   border-radius: 3px;
   font-weight: bold;
 }
 
-.tagline {
+.movie-tagline {
   font-size: 2em;
   font-style: italic;
 }
