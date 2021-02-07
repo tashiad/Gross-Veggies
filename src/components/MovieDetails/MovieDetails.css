@@ -1,13 +1,46 @@
+/* COLORS:
+red: #DB0404
+dark red: #830908
+black: #1A0D0D
+white: #EDEDEB
+gray: #7B7C7C */
+
 .backdrop {
   width: 50%;
-  /* height: 30%; */
 }
 
 .details-poster {
   width: 50%;
-  /* height: 20%; */
 }
 
 .loading {
-  color: red;
+  color: #DB0404;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.genre {
+  color: #EDEDEB;
+  background-color: #DB0404;
+  padding: 1%;
+  margin: 1%;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.tagline {
+  font-size: 2em;
+  font-style: italic;
+}
+
+.tomato {
+  margin-right: 10px;
+}
+
+.movie-overview {
+  border: 3px solid #DB0404;
+  border-radius: 3px;
+  padding: 3%;
 }
