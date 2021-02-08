@@ -46,13 +46,13 @@ gray: #7B7C7C */
 
 @media screen and (max-width: 425px) {
   .poster-rating {
-    font-size: 3vw;
+    font-size: 4vw;
   }
   .poster-title {
-    font-size: 3em
+    font-size: 4.5em
   }
-
-.poster {
-  height: 25vh;
-}
+  .poster {
+    height: 40vh;
+    padding: 2% 4% 2% 4%;
+  }
 }
