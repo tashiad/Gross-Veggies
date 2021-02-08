@@ -1,5 +1,14 @@
+/* COLORS:
+red: #DB0404
+orange-red: #F24827
+dark red: #830908
+black: #1A0D0D
+white: #EDEDEB
+gray: #7B7C7C */
+
+
 header {
-  background-color: red;
+  background-color: #f24927f5;
   padding: 3%;
 }
 
@@ -7,6 +16,7 @@ h1 {
   text-align: center;
   margin: 0;
   font-size: 2.5em;
+  color: black;
 }
 
 .errors {
