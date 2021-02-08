@@ -10,7 +10,7 @@ html {
   width:100%;
 }
 header {
-  background-color: #f24927f5;
+  background-color: #DB0404;
   padding: 3%;
   /* width: 100%; */
 }
@@ -18,7 +18,7 @@ header {
 h1 {
   text-align: center;
   margin: 0;
-  font-size: 2.5em;
+  font-size: 5.5em;
   color: black;
   /* width: 100%; */
 
@@ -30,4 +30,12 @@ h1 {
 
 .error-message {
   color: white;
+}
+.error-message {
+  height: 100%;
+  text-align: center;
+  border: #DB0404 dashed 3px;
+  border-radius: 3px;
+  padding: 5%;
+  font-size: 4em;
 }
