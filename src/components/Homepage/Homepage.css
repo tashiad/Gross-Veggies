@@ -8,10 +8,20 @@ main {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 5%;
-  grid-row-gap: 2%;
+  grid-row-gap: 1%;
   margin: 0 5% 0 5%;
 }
 
 .loading {
   color: red;
+}
+@media screen and (max-width: 425px) {
+  .posters-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 3%;
+    grid-row-gap: .3%;
+    margin: 0 2% 0 2%;
+  }
+  
 }

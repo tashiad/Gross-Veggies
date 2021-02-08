@@ -1,12 +1,27 @@
+/* COLORS:
+red: #DB0404
+orange-red: #F24827
+dark red: #830908
+black: #1A0D0D
+white: #EDEDEB
+gray: #7B7C7C */
+
+html {
+  width:100%;
+}
 header {
-  background-color: red;
+  background-color: #DB0404;
   padding: 3%;
+  /* width: 100%; */
 }
 
 h1 {
   text-align: center;
   margin: 0;
-  font-size: 2.5em;
+  font-size: 5.5em;
+  color: black;
+  /* width: 100%; */
+
 }
 
 .errors {
@@ -15,4 +30,12 @@ h1 {
 
 .error-message {
   color: white;
+}
+.error-message {
+  height: 100%;
+  text-align: center;
+  border: #DB0404 dashed 3px;
+  border-radius: 3px;
+  padding: 5%;
+  font-size: 4em;
 }
