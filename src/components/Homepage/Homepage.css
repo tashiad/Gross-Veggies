@@ -10,6 +10,12 @@
   color: red;
 }
 
+@media screen and (max-width: 1024px) {
+  .posters-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media screen and (max-width: 425px) {
   .posters-container {
     grid-template-columns: repeat(2, 1fr);

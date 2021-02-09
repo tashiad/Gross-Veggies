@@ -43,6 +43,12 @@
   height: 20%;
 }
 
+@media screen and (max-width: 1024px) {
+  .poster-rating {
+    font-size: 1.8vw;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .poster-rating {
     font-size: 4vw;
