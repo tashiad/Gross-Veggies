@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import './App.css'
 import Homepage from '../Homepage/Homepage'
 import MovieDetails from '../MovieDetails/MovieDetails'
+import { Route } from 'react-router-dom'
+// import { getMovies } from '../../apiCalls';
+
 
 class App extends Component {
   constructor() {
@@ -24,11 +27,9 @@ class App extends Component {
         }
       })
       .then(data => this.setState({
-        movies: data.movies,
-        currentMovie: '',
-        error: '',
-        loading: false
-      }))
+          movies: data.movies,
+          loading: false
+        }))
       .catch(error => this.setState({ error: 'Unable to reach movie database. Please refresh the page or try again later.' }))
   }
 
@@ -69,11 +70,18 @@ class App extends Component {
             <h2 className="error-message">{this.state.error}</h2>}
         </div>
 
-        {!this.state.currentMovie &&
+        <Route exact path="/" render={() =>
           <Homepage
             movies={this.state.movies}
             openDetails ={this.openDetails}
-          />
+          />}
+        />
+
+        { // !this.state.currentMovie &&
+          // <Homepage
+          //   movies={this.state.movies}
+          //   openDetails ={this.openDetails}
+          // />
         }
 
         {this.state.currentMovie &&

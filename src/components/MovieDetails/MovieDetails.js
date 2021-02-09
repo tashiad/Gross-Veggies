@@ -1,5 +1,6 @@
 import React from 'react'
 import './MovieDetails.css'
+import { Link } from 'react-router-dom';
 
 const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
   const formattedGenres = currentMovie.genres.map((genre, index) => {
@@ -22,7 +23,9 @@ const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
         <img className="movie-backdrop" src={currentMovie.backdrop_path} alt={`backdrop for ${currentMovie.title}`}/>
         <h2 className="movie-title">{currentMovie.title}</h2>
       </section>
-      <button className="back-button" onClick={clearCurrentMovie}>⬅ Back</button>
+      <Link to="/">
+        <button className="back-button" onClick={clearCurrentMovie}>⬅ Back</button>
+      </Link>
       <section className="full-movie-details">
         <div className="movie-info-container">
           <img className="movie-details-poster"src={currentMovie.poster_path} alt={`poster for ${currentMovie.title}`}/>
