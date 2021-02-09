@@ -2,40 +2,38 @@
 red: #DB0404
 orange-red: #F24827
 dark red: #830908
-black: #1A0D0D
 white: #EDEDEB
 gray: #7B7C7C */
 
-html {
-  width:100%;
-}
 header {
-  background-color: #DB0404;
-  padding: 3%;
-  /* width: 100%; */
+  /* background-color: #DB0404; */
+  margin: 10%;
 }
 
 h1 {
   text-align: center;
   margin: 0;
   font-size: 5.5em;
-  color: black;
-  /* width: 100%; */
-
+  color: #F24827;
 }
 
 .errors {
-  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .error-message {
-  color: white;
-}
-.error-message {
-  height: 100%;
+  width: 70%;
+  margin: 3%;
   text-align: center;
   border: #DB0404 dashed 3px;
   border-radius: 3px;
-  padding: 5%;
-  font-size: 4em;
+  padding: 3%;
+}
+
+@media screen and (max-width: 425px) {
+  h1 {
+    font-size: 2em;
+  }
 }
