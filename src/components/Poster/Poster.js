@@ -1,9 +1,14 @@
 import React from 'react'
 import './Poster.css'
 
-const Poster = ({ id, title, poster_path, average_rating, openDetails }) => {
+const Poster = ({ movieId, title, poster_path, average_rating, openDetails }) => {
   return (
-    <article className="poster" onClick={() => openDetails(id)}>
+    <article className="poster" 
+    // id={movieId}
+     onClick={() => 
+      openDetails(movieId)
+    }
+    >
       <h2 className="poster-title">{title}</h2>
       <img src={poster_path} alt={`${title} poster`} className="poster-img"/>
       <p className="poster-rating">{`🍅 \u00A0

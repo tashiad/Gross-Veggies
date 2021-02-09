@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Homepage from '../Homepage/Homepage'
 import MovieDetails from '../MovieDetails/MovieDetails'
+import {Switch, Route} from 'react-router-dom'
 
 class App extends Component {
   constructor() {
@@ -44,6 +45,7 @@ class App extends Component {
       .then(data => this.setState({
         currentMovie: data.movie
       }))
+      .then(console.log(this.state.currentMovie))
       .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
   }
 
@@ -52,33 +54,59 @@ class App extends Component {
 
   render() {
     return(
-      <>
-        <header>
-          <h1>Rancid Tomatillos</h1>
-        </header>
 
-        <div className='errors'>
-          {this.state.loading && !this.state.error &&
-            <h2 className="loading">Loading...</h2>}
+      <Switch>
+        <Route
+          exact
+          path='/:movieId'
+          render= {({match}) => {
+            const { id } = parseInt(match.params);
+            // const movieToRender = this.openDetails(id)
+            
+            // const clearCurrentMovieMethod = this.clearCurrentMovie
+            return (<MovieDetails
+              currentMovie={this.currentMovie}
+              clearCurrentMovie={this.clearCurrentMovie}
+            />)
+          }
+          }
+        />
+        <Route path='/' exact  render={() => <Homepage movies={this.state.movies}
+        openDetails ={this.openDetails}/>}
+        />
+      </Switch>
+      
+      
+     
 
-          {this.state.error &&
-            <h2 className="error-message">{this.state.error}</h2>}
-        </div>
 
-        {!this.state.currentMovie &&
-          <Homepage
-            movies={this.state.movies}
-            openDetails ={this.openDetails}
-          />
-        }
+      // <>
+      //   <header>
+      //     <h1>Rancid Tomatillos</h1>
+      //   </header>
 
-        {this.state.currentMovie &&
-          <MovieDetails
-            currentMovie={this.state.currentMovie}
-            clearCurrentMovie={this.clearCurrentMovie}
-          />
-        }
-      </>
+      //   <div className='errors'>
+      //     {this.state.loading && !this.state.error &&
+      //       <h2 className="loading">Loading...</h2>}
+
+      //     {this.state.error &&
+      //       <h2 className="error-message">{this.state.error}</h2>}
+      //   </div>
+
+      //   {!this.state.currentMovie &&
+      //     <Homepage
+      //       movies={this.state.movies}
+      //       openDetails ={this.openDetails}
+      //     />
+      //   }
+
+      //   {this.state.currentMovie &&
+          // <MovieDetails
+          //   currentMovie={this.state.currentMovie}
+          //   clearCurrentMovie={this.clearCurrentMovie}
+          // />
+      //   }
+      // </>
     )
   }
 }
