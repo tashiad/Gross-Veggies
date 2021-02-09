@@ -16,5 +16,8 @@ describe('Homepage', () => {
     cy.get('article')
     .get('h2') 
     .contains('Mulan')
+    .get('img')
+    .get('p')
+    .contains('🍅')
   });
 });
