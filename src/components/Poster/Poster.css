@@ -1,11 +1,3 @@
-/* COLORS:
-red: #DB0404
-orange-red: #F24827
-dark red: #830908
-black: #1A0D0D
-white: #EDEDEB
-gray: #7B7C7C */
-
 .poster {
   display: flex;
   flex-direction: column;
@@ -19,14 +11,20 @@ gray: #7B7C7C */
   cursor: pointer;
   font-size: 1vw;
   background-color: rgba(255, 255, 255, 0.1);
-  transition: transform 1s; 
+  transition: transform 1s;
 }
-.poster:hover { transform: scale(1.1); }
+
+.poster:hover {
+  transform: scale(1.1);
+}
 
 .poster-rating {
-  transition: transform 1s; 
+  transition: transform 1s;
 }
-.poster-rating:hover { transform: scale(1.3) }
+
+.poster-rating:hover {
+  transform: scale(1.3)
+}
 
 .poster-img {
   width: 80%;
@@ -39,20 +37,31 @@ gray: #7B7C7C */
   font-size: 1.3vw;
   height: 20%;
 }
+
 .poster-title {
   font-size: 2.5vh;
   height: 20%;
+}
+
+@media screen and (max-width: 1024px) {
+  .poster-rating {
+    font-size: 1.8vw;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .poster-rating {
     font-size: 4vw;
   }
-  .poster-title {
-    font-size: 4.5em
-  }
+
   .poster {
     height: 40vh;
     padding: 2% 4% 2% 4%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .poster-rating {
+    font-size: 6vw;
   }
 }

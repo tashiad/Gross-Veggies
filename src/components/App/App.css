@@ -2,40 +2,88 @@
 red: #DB0404
 orange-red: #F24827
 dark red: #830908
-black: #1A0D0D
 white: #EDEDEB
-gray: #7B7C7C */
+gray: #7B7C7C
+dark gray: #1A1A1A */
 
-html {
-  width:100%;
-}
 header {
-  background-color: #DB0404;
-  padding: 3%;
-  /* width: 100%; */
+  background: linear-gradient(#1A1A1A, #000000);
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding-left: 4%;
 }
 
 h1 {
-  text-align: center;
   margin: 0;
-  font-size: 5.5em;
-  color: black;
-  /* width: 100%; */
+  padding: 3% 3% 3% 1%;
+  font-size: 3em;
+  color: #F24827;
+  font-weight: normal;
+}
 
+.tomatillos {
+  font-weight: bold;
+}
+
+.giphy-embed {
+  pointer-events: none;
 }
 
 .errors {
-  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .error-message {
-  color: white;
-}
-.error-message {
-  height: 100%;
+  width: 70%;
+  margin: 3%;
   text-align: center;
   border: #DB0404 dashed 3px;
   border-radius: 3px;
-  padding: 5%;
-  font-size: 4em;
+  padding: 3%;
+}
+
+@media screen and (max-width: 1440px) {
+  h1 {
+    padding: 5% 3% 5% 1%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    padding: 6% 3% 6% 2%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  header {
+    justify-content: center;
+    padding: 8%;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    padding: 6% 3% 6% 5%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8%;
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  .tomatillos {
+    display: inline-block;
+  }
 }

@@ -54,7 +54,8 @@ class App extends Component {
     return(
       <>
         <header>
-          <h1>Rancid Tomatillos</h1>
+          <iframe src="https://giphy.com/embed/vhmqZP2vm1Nfy" width="50" height="50" frameBorder="0" className="giphy-embed" title="dancing-tomato"></iframe>
+          <h1>Rancid<span className="tomatillos">Tomatillos</span></h1>
         </header>
 
         <div className='errors'>
