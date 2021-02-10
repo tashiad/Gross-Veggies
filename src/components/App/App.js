@@ -31,21 +31,6 @@ class App extends Component {
       .catch(error => this.setState({ error: 'Unable to reach movie database. Please refresh the page or try again later.' }))
   }
 
-  // openDetails = (id) => {
-  //   fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json()
-  //       } else {
-  //         throw new Error('There be an Ogre')
-  //       }
-  //     })
-  //     .then(data => this.setState({
-  //       currentMovie: data.movie
-  //     }))
-  //     .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
-  // }
-
   clearCurrentMovie = () => {
     this.setState({currentMovie: ''})}
 
@@ -64,16 +49,6 @@ class App extends Component {
           {this.state.error &&
             <h2 className="error-message">{this.state.error}</h2>}
         </div>
-
-              
-        
-        {/* {!this.state.currentMovie &&
-          <Homepage
-            movies={this.state.movies}
-            openDetails ={this.openDetails}
-          />
-        } */}
-
       <Switch>
         <Route 
           path='/movies/:movieId'
@@ -91,12 +66,6 @@ class App extends Component {
           />}
         />
       </Switch>
-        {/* {this.state.currentMovie &&
-          <MovieDetails
-            currentMovie={this.state.currentMovie}
-            clearCurrentMovie={this.clearCurrentMovie}
-          />
-        } */}
       </>
     )
   }

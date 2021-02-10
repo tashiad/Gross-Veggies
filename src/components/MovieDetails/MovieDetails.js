@@ -11,49 +11,54 @@ class MovieDetails extends Component {
       }
     }
    
-componentWillMount() {
+componentDidMount() {
   console.log('did mount');
     this.getData()
     }
 
-async getData() {
+getData = () => {
   console.log(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.state.filmId}`)
 
-  const movie = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.movieId}`)
+  // const movie = await fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.movieId}`)
 
-  const parsedMovie = await movie.json()
+  // const parsedMovie = await movie.json()
 
-  this.setState({
-    currentMovie: parsedMovie.mo
+  // this.setState({
+  //   currentMovie: parsedMovie
+  // })
+  fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.movieId}`)
+  .then(response => {
+    if (response.ok) {
+      return response.json()
+    } else {
+      throw new Error('There be an Ogre')
+    }
   })
+  // .then(data => console.log(data))
+  .then(response => this.setState({
+    currentMovie: response.movie,
+    loading: false
+  }))
+  // .then(data => {
+  //   console.log(data.movie)
+  //   this.setState({
+  //   currentMovie: data.movie,
+  //   loading: false
+  // })})
 
-}
+  .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
+  }
 
 
-    // .then(response => {
-    //   if (response.ok) {
-    //     return response.json()
-    //   } else {
-    //     throw new Error('There be an Ogre')
-    //   }
-    // })
-    // .then(data => console.log(data.movie))
-    // .then(data => this.setState({
-    //   currentMovie: data.movie,
-    //   loading: false
-    // }))
-
-    // .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
-    // }
 
   render() {
 
 
-  
+
 
   const currentMovie = this.state.currentMovie
 
-  console.log('should be state',this.state)
+  console.log('should be state',this.state.currentMovie)
 
   const formattedGenres = currentMovie.genres.map((genre, index) => {
     return (<span key={index} className="movie-genre">{genre}</span>)
@@ -87,7 +92,7 @@ async getData() {
             <div className="movie-info">
               {!currentMovie.tagline ? null : <p className="movie-tagline">"{currentMovie.tagline}"</p>}
               {!currentMovie.average_rating ? null : <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating.toFixed(1)} / 10 gross veggies</p>}
-              {!currentMovie.genres ? null : <div className="movie-genres-container">{formattedGenres}</div>}
+              {!currentMovie.genres ? null : <div className="movie-genres-container">{currentMovie.genres}</div>}
               {!currentMovie.release_date ? null : <p><span className="movie-details-label">Release Date: </span>{formattedDate}</p>}
               {!currentMovie.runtime ? null : <p><span className="movie-details-label">Runtime: </span>{formattedRuntime}</p>}
               {!currentMovie.budget ? null : <p><span className="movie-details-label">Budget: </span>{currentMovie.budget.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
