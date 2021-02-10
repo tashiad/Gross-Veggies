@@ -24,7 +24,7 @@ const MovieDetails = ({currentMovie, clearCurrentMovie}) => {
         <h2 className="movie-title">{currentMovie.title}</h2>
       </section>
       <Link to="/">
-        <button className="back-button" onClick={clearCurrentMovie}>⬅ Back</button>
+        <button className="back-button">⬅ Back</button>
       </Link>
       <section className="full-movie-details">
         <div className="movie-info-container">
