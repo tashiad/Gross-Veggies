@@ -3,7 +3,7 @@ import './App.css'
 import Homepage from '../Homepage/Homepage'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import { Route } from 'react-router-dom'
-// import { getMovies } from '../../apiCalls';
+import { fetchMovies } from '../../apiCalls'
 
 
 class App extends Component {
@@ -11,45 +11,16 @@ class App extends Component {
     super()
     this.state = {
       movies: [],
-      currentMovie: '',
       error: '',
       loading: true
     }
   }
 
-  componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error('There be Monsters')
-        }
-      })
-      .then(data => this.setState({
-          movies: data.movies,
-          loading: false
-        }))
-      .catch(error => this.setState({ error: 'Unable to reach movie database. Please refresh the page or try again later.' }))
+  componentDidMount = () => {
+    fetchMovies()
+    .then(allMovies => this.setState({ movies: allMovies.movies, loading: false }))
+    .catch(error => this.setState({ error: 'Unable to reach movie database. Please refresh the page or try again later.' }))
   }
-
-  openDetails = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error('There be an Ogre')
-        }
-      })
-      .then(data => this.setState({
-        currentMovie: data.movie
-      }))
-      .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
-  }
-
-  clearCurrentMovie = () => {
-    this.setState({currentMovie: ''})}
 
   render() {
     return(
@@ -70,26 +41,16 @@ class App extends Component {
             <h2 className="error-message">{this.state.error}</h2>}
         </div>
 
-        <Route exact path="/" render={() =>
-          <Homepage
-            movies={this.state.movies}
-            openDetails ={this.openDetails}
-          />}
+        <Route
+          exact path="/"
+          render={() => <Homepage movies={this.state.movies} />}
         />
 
-        { // !this.state.currentMovie &&
-          // <Homepage
-          //   movies={this.state.movies}
-          //   openDetails ={this.openDetails}
-          // />
-        }
+        <Route
+          exact path="/movie/:id"
+          render={({ match }) => <MovieDetails id={match.params.id}/>}
+        />
 
-        {this.state.currentMovie &&
-          <MovieDetails
-            currentMovie={this.state.currentMovie}
-            clearCurrentMovie={this.clearCurrentMovie}
-          />
-        }
       </>
     )
   }
