@@ -1,3 +1,7 @@
+main {
+  padding-bottom: 30%;
+}
+
 .posters-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -11,12 +15,20 @@
 }
 
 @media screen and (max-width: 1024px) {
+  main {
+    padding-bottom: 50%;
+  }
+
   .posters-container {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media screen and (max-width: 425px) {
+  main {
+    padding-bottom: 125%;
+  }
+
   .posters-container {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 3%;
@@ -26,6 +38,10 @@
 }
 
 @media screen and (max-width: 320px) {
+  main {
+    padding-bottom: 400%;
+  }
+
   .posters-container {
     grid-template-columns: 1fr;
     grid-row-gap: .2%;

@@ -8,15 +8,18 @@ dark gray: #1A1A1A */
 
 header {
   background: linear-gradient(#1A1A1A, #000000);
+  padding: 0 0 3% 4%;
+}
+
+.logo {
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
-  padding-left: 4%;
 }
 
 h1 {
   margin: 0;
-  padding: 3% 3% 3% 1%;
+  padding: 3% 3% 0 1%;
   font-size: 3em;
   color: #F24827;
   font-weight: normal;
@@ -47,25 +50,34 @@ h1 {
 
 @media screen and (max-width: 1440px) {
   h1 {
-    padding: 5% 3% 5% 1%;
+    padding: 5% 3% 0 1%;
   }
 }
 
 @media screen and (max-width: 768px) {
   h1 {
-    padding: 6% 3% 6% 2%;
+    padding: 6% 3% 0 2%;
   }
 }
 
 @media screen and (max-width: 425px) {
   header {
     justify-content: center;
-    padding: 8%;
+    padding: 5%;
+  }
+
+  .logo {
+    justify-content: center;
+    align-items: center;
   }
 
   h1 {
     font-size: 2.2em;
-    padding: 6% 3% 6% 5%;
+    padding: 6% 3% 0 5%;
+  }
+
+  h2 {
+    text-align: center;
   }
 }
 
@@ -75,15 +87,26 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 8%;
+    padding: 8% 0;
     font-size: 1.5em;
   }
 
+  .logo {
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+  }
+
   h1 {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    padding: 6% 0 0 4%;
   }
 
   .tomatillos {
     display: inline-block;
+  }
+
+  h2 {
+    font-size: .8em
   }
 }
