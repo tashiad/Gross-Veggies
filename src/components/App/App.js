@@ -16,7 +16,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     fetchMovies()
     .then(allMovies => this.setState({ movies: allMovies.movies, loading: false }))
     .catch(error => this.setState({ error: 'Unable to reach movie database. Please refresh the page or try again later.' }))
