@@ -5,7 +5,6 @@ import MovieDetails from '../MovieDetails/MovieDetails'
 import { Route } from 'react-router-dom'
 import { fetchMovies } from '../../apiCalls'
 
-
 class App extends Component {
   constructor() {
     super()
@@ -50,7 +49,6 @@ class App extends Component {
           exact path="/movie/:id"
           render={({ match }) => <MovieDetails id={match.params.id}/>}
         />
-
       </>
     )
   }
