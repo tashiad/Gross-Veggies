@@ -43,4 +43,12 @@ describe('Homepage', () => {
     .url().should('include', '/movie/694919')
     .get('.movie-title').contains('Money Plane')
   })
+
+  it('Should have a funtional back button from the movie details page', () => {
+    cy.visit('http://localhost:3000/movie/694919')
+    .get('.back-button').click()
+    .get('header').contains('h2', 'Movie ratings and more.')
+    // .url().should.('include','http://localhost:3000/')
+  })  
+
 })
