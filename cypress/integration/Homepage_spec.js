@@ -25,4 +25,22 @@ describe('Homepage', () => {
     .get('.poster-img').should('have.attr', 'src').should('include', "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg")
     .get('.poster-rating').contains('6.1/10')
   })
+
+
+  it('Should be able to click on a movie poster', () => {
+    cy.get('.poster:first').click()
+
+    cy.fixture('mock-movie-data.json')
+    .then((response) => {
+      cy.intercept({
+        method: 'GET',
+        url: 'https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919',
+      }, {
+        statusCode: 200,
+        body: response
+      })
+    })
+    .url().should('include', '/movie/694919')
+    .get('.movie-title').contains('Money Plane')
+  })
 })
