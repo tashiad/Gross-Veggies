@@ -42,9 +42,9 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { currentMovie } = this.state
+    const { currentMovie, error } = this.state
 
-    if (this.state.currentMovie) {
+    if (currentMovie) {
       return (
           <>
             <section className="movie-banner">
@@ -76,6 +76,8 @@ class MovieDetails extends Component {
             </section>
           </>
       )
+    } else if (error) {
+      return <h2>{error}</h2>
     } else {
       return <p>Loading...</p>
     }

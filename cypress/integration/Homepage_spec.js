@@ -28,9 +28,8 @@ describe('Homepage', () => { // update describe blocks
       .get('.error-message').contains('h2', 'Unable to reach movie database.')
   })
 
-  it.only('Should be able to click on a movie poster', () => { // NOT WORKING
+  it('Should be able to click on a movie poster', () => {
     cy
-      .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', {fixture: 'mock-movie-data.json'})
       .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {fixture: 'single-movie-data.json'})
       .visit('http://localhost:3000')
       .get('.poster:first').click()
@@ -38,7 +37,7 @@ describe('Homepage', () => { // update describe blocks
       .get('.movie-title').contains('Test 1')
   })
 
-  it.skip('Should show an error message for an incorrect or nonexistent movie id', () => { // FIGURE OUT
+  it('Should show an error message for an incorrect or nonexistent movie id', () => { // FIGURE OUT
     cy
       .intercept({
         method: 'GET',
@@ -47,8 +46,8 @@ describe('Homepage', () => { // update describe blocks
       {
         statusCode: 404
       })
-      .visit('http://localhost:3000')
-      .get('.error-message').contains('h2', 'Unable to reach movie database.') // what is the error message actually?
+      .visit('http://localhost:3000/movie/5')
+      .get('h2').contains('Unable to find the movie you were looking for.')
   })
 
   it('Should have a funtional back button from the movie details page', () => {
