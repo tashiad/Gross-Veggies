@@ -46,7 +46,7 @@ class App extends Component {
         />
 
         <Route
-          exact path="/movie/:id"
+          path="/movie/:id"
           render={({ match }) => <MovieDetails id={match.params.id}/>}
         />
       </>

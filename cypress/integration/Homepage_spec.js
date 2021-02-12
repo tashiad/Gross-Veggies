@@ -28,11 +28,11 @@ describe('Homepage', () => { // update describe blocks
       .get('.error-message').contains('h2', 'Unable to reach movie database.')
   })
 
-  it.skip('Should be able to click on a movie poster', () => { // FIGURE OUT
+  it.only('Should be able to click on a movie poster', () => { // NOT WORKING
     cy
-      // .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', {fixture: 'mock-movie-data.json'})
+      .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', {fixture: 'mock-movie-data.json'})
+      .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {fixture: 'single-movie-data.json'})
       .visit('http://localhost:3000')
-      // .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {fixture: 'mock-movie-data.json'})
       .get('.poster:first').click()
       .url().should('include', '/movie/694919')
       .get('.movie-title').contains('Test 1')
