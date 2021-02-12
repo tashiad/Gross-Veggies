@@ -9,7 +9,7 @@ export const fetchMovies = () => {
 }
 
 export const fetchSingleMovie = (id) => {
-  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${+id}`)
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${+id}`) // parse int id instead?
   .then((response) => {
     if(!response.ok) {
       throw Error('Sorry! We\'ve encountered an error')
