@@ -5,18 +5,18 @@ import { fetchSingleMovie } from '../../apiCalls'
 
 class MovieDetails extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       currentMovie: {},
       error: '',
-      loading: true // need to build this out
+      loading: true
     }
   }
 
   componentDidMount() {
     fetchSingleMovie(this.props.id)
-    .then(singleMovie => this.setState({ currentMovie: singleMovie.movie }))
-    .catch(error => this.setState({ error: 'Unable to find the movie you were looking for. Please try another movie.' }))
+    .then(singleMovie => this.setState({ currentMovie: singleMovie.movie, loading: false }))
+    .catch(error => this.setState({ currentMovie: '', error: 'Unable to find the movie you were looking for. Please try another movie.' }))
   }
 
   formatGenres = (movie) => {
@@ -42,7 +42,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { currentMovie, error } = this.state
+    const { currentMovie, error, loading } = this.state
 
     if (currentMovie) {
       return (
@@ -78,7 +78,7 @@ class MovieDetails extends Component {
       )
     } else if (error) {
       return <h2>{error}</h2>
-    } else {
+    } else if (loading) {
       return <p>Loading...</p>
     }
 
