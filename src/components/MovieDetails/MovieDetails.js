@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import ReactPlayer from "react-player/youtube"
 import './MovieDetails.css'
 import { Link } from 'react-router-dom'
-import { fetchSingleMovie } from '../../apiCalls'
+import { fetchSingleMovie, fetchVideos } from '../../apiCalls'
 
 class MovieDetails extends Component {
   constructor() {
     super()
     this.state = {
       currentMovie: {},
+      videos: [],
       error: '',
       loading: true
     }
@@ -15,13 +17,21 @@ class MovieDetails extends Component {
 
   componentDidMount() {
     fetchSingleMovie(this.props.id)
-    .then(singleMovie => this.setState({ currentMovie: singleMovie.movie, loading: false }))
+    .then(currentMovie => this.setState({ currentMovie: currentMovie.movie }))
+    .then(() => fetchVideos(this.props.id))
+    .then(videos => this.setState({ videos: videos.videos }))
+    .then(() => this.setState({ loading: false }))
     .catch(error => this.setState({ currentMovie: '', error: 'Unable to find the movie you were looking for. Please try another movie.' }))
+  }
+
+  getVideo = (type) => {
+    const foundVideo = this.state.videos.find(v => v.type === type);
+    return `https://www.${foundVideo.site.toLowerCase()}.com/watch?v=${foundVideo.key}`
   }
 
   formatGenres = (movie) => {
     return movie.map((genre, index) => {
-      return (<span key={index} className="movie-genre">{genre}</span>)
+      return <span key={index} className="movie-genre">{genre}</span>
     })
   }
 
@@ -42,7 +52,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { currentMovie, error, loading } = this.state
+    const { currentMovie, videos, error, loading } = this.state
 
     if (currentMovie) {
       return (
@@ -74,6 +84,15 @@ class MovieDetails extends Component {
                 </div>
               }
             </section>
+            {videos.length && (
+              <div className="video-wrapper">
+                <ReactPlayer
+                  controls={true}
+                  url={this.getVideo("Trailer")}
+                  wrapper="div"
+                />
+              </div>
+            )}
           </>
       )
     } else if (error) {
@@ -81,7 +100,6 @@ class MovieDetails extends Component {
     } else if (loading) {
       return <p>Loading...</p>
     }
-
 
   }
 }
