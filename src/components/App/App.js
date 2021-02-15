@@ -30,14 +30,12 @@ class App extends Component {
   searchByTitle = (title) => {
 
     console.log(title)
-    const movieList = this.state.movies.filter(movie => movie.title === title )
+    const movieList = this.state.movies.filter(movie => movie.title.includes(title))
+    
     this.setState({
       searchedTitles: movieList
     })
     console.log(this.state)
-    // this.SetState({
-    //   searchedTitles: list
-    // })
   }
 
   render() {
