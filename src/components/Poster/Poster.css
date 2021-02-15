@@ -63,10 +63,24 @@
     height: 40vh;
     padding: 2% 4% 2% 4%;
   }
+
+  .poster-img {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .poster-img {
+    width: 75%;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .poster-rating {
     font-size: 6vw;
+  }
+
+  .poster-img {
+    width: 60%;
   }
 }
