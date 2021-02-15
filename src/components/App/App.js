@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from '../Header/Header'
+import Form from '../Form/Form'
 import Homepage from '../Homepage/Homepage'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import { Route } from 'react-router-dom'
@@ -30,15 +31,18 @@ class App extends Component {
     return(
       <>
         <Header />
-
+       
         <Route
           exact path="/"
           render={() =>
-            <Homepage
-              movies={movies}
-              isLoading={isLoading}
-              error={error}
-            />
+            <>
+              <Form />
+              <Homepage
+                movies={movies}
+                isLoading={isLoading}
+                error={error}
+              />
+            </>
           }
         />
 
