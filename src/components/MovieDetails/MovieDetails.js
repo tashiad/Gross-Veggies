@@ -11,7 +11,7 @@ class MovieDetails extends Component {
       currentMovie: {},
       videos: [], // single video
       error: '',
-      loading: true
+      loading: true // should start as false and then set state in CDM
     }
   }
 
@@ -19,13 +19,12 @@ class MovieDetails extends Component {
     fetchSingleMovie(this.props.id)
       .then(currentMovie => this.setState({ currentMovie: currentMovie.movie }))
       .then(() => fetchVideos(this.props.id))
-      .then(videos => this.setState({ videos: videos.videos }))
-      .then(() => this.setState({ loading: false })) // where should this go?
-      .catch(error => this.setState({ currentMovie: '', error: 'Unable to find the movie you were looking for. Please try another movie.' }))
+      .then(videos => this.setState({ videos: videos.videos, loading: false }))
+      .catch(error => this.setState({ currentMovie: '', error: 'Unable to find the movie you were looking for. Please try another movie.', loading: false }))
   }
 
   getVideo = (type) => {
-    const foundVideo = this.state.videos.find(v => v.type === type);
+    const foundVideo = this.state.videos.find(v => v.type === type)
     return `https://www.${foundVideo.site.toLowerCase()}.com/watch?v=${foundVideo.key}`
   }
 
@@ -95,7 +94,7 @@ class MovieDetails extends Component {
           }
         </>
       )
-    } else if (error) {
+    } else if (error) { // make this like error handling in app
       return <h2>{error}</h2>
     } else if (loading) {
       return <p>Loading...</p>
