@@ -11,7 +11,7 @@ class Form extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    
+    this.props.searchByTitle(this.state.value)
   }
 
   handleChange = (event) => {

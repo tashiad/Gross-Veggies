@@ -26,6 +26,20 @@ class App extends Component {
     .finally(() => this.setState({ isLoading: false }))
   }
 
+
+  searchByTitle = (title) => {
+
+    console.log(title)
+    const movieList = this.state.movies.filter(movie => movie.title === title )
+    this.setState({
+      searchedTitles: movieList
+    })
+    console.log(this.state)
+    // this.SetState({
+    //   searchedTitles: list
+    // })
+  }
+
   render() {
     const { movies, isLoading, error, searchedTitles } = this.state
 
@@ -37,7 +51,7 @@ class App extends Component {
           exact path="/"
           render={() =>
             <>
-              <Form />
+              <Form searchByTitle={this.searchByTitle}/>
               <Homepage
                 searchedTitles={searchedTitles}
                 movies={movies}
