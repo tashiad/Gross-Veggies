@@ -43,10 +43,16 @@ class App extends Component {
           <h2>Movie ratings and more.</h2>
         </header>
 
-        {isLoading && <h2 className="loading">Loading...</h2>}
-        {error && <h2 className="error-message">{error}</h2>}
-
-        <Route exact path="/" render={() => <Homepage movies={movies} />}/>
+        <Route
+          exact path="/"
+          render={() =>
+            <Homepage
+              movies={movies}
+              isLoading={isLoading}
+              error={error}
+            />
+          }
+        />
 
         <Route
           path="/movie/:id"
