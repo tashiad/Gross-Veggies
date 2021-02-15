@@ -12,6 +12,7 @@ class App extends Component {
     super()
     this.state = {
       movies: [],
+      searchedTitles: [],
       isLoading: false,
       error: ''
     }
@@ -26,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    const { movies, isLoading, error } = this.state
+    const { movies, isLoading, error, searchedTitles } = this.state
 
     return(
       <>
@@ -38,6 +39,7 @@ class App extends Component {
             <>
               <Form />
               <Homepage
+                searchedTitles={searchedTitles}
                 movies={movies}
                 isLoading={isLoading}
                 error={error}
