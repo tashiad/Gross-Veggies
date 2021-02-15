@@ -2,7 +2,7 @@ import React from 'react'
 import './Homepage.css'
 import Poster from '../Poster/Poster'
 
-const Homepage = ({ movies }) => {
+const Homepage = ({ movies, isLoading, error }) => {
   const posterCards = movies.map(movie => {
     return (
       <Poster
@@ -15,11 +15,12 @@ const Homepage = ({ movies }) => {
     )
   })
 
-
   return (
     <main>
+      {isLoading && <h2 className="loading">Loading movies...</h2>}
+      {error && <h2 className="error-message">{error}</h2>}
       <section className="posters-container">
-        {posterCards}
+        {movies && posterCards}
       </section>
     </main>
   )
