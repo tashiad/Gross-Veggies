@@ -25,31 +25,35 @@ class MovieDetails extends Component {
       .finally(() => this.setState({ isLoading: false }))
   }
 
-  getVideo = (type) => {
+  getVideo = type => {
     const foundVideo = this.state.trailer.find(v => v.type === type)
     return `https://www.${foundVideo.site.toLowerCase()}.com/watch?v=${foundVideo.key}`
   }
 
-  formatGenres = (movie) => {
-    return movie.map((genre, index) => {
+  formatGenres = movieGenres => {
+    return movieGenres.map((genre, index) => {
       return <span key={index} className="movie-genre">{genre}</span>
     })
   }
 
-  formatDate = (movie) => {
-    const date = new Date(movie)
+  formatDate = movieDate => {
+    const date = new Date(movieDate)
     const fullMonth = date.toLocaleString('default', { month: 'long' })
     const formattedDate = `${fullMonth} ${date.getDay()}, ${date.getFullYear()}`
     return formattedDate
   }
 
-  formatRuntime = (movie) => {
-    const runtimeHours = Math.floor(movie / 60)
-    const runtimeMinutes = movie % 60
+  formatRuntime = movieRuntime => {
+    const runtimeHours = Math.floor(movieRuntime / 60)
+    const runtimeMinutes = movieRuntime % 60
     const formattedRuntime = runtimeHours === 1 ?
       `${runtimeHours} hour, ${runtimeMinutes} mins` :
       `${runtimeHours} hours, ${runtimeMinutes} mins`
     return formattedRuntime
+  }
+
+  formatCurrency = movieMoney => {
+    return movieMoney.toLocaleString("en-US", { style: "currency", currency: "USD" })
   }
 
   render() {
@@ -82,12 +86,12 @@ class MovieDetails extends Component {
                 />
                 <div className="movie-info">
                   {currentMovie.tagline && <p className="movie-tagline">"{currentMovie.tagline}"</p>}
-                  {currentMovie.average_rating && <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating?.toFixed(1)}/10 gross veggies</p>}
+                  {currentMovie.average_rating && <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating.toFixed(1)}/10 gross veggies</p>}
                   {currentMovie.genres && <div className="movie-genres-container">{this.formatGenres(currentMovie.genres)}</div>}
                   {currentMovie.release_date && <p><span className="movie-details-label">Release Date: </span>{this.formatDate(currentMovie.release_date)}</p>}
                   {currentMovie.runtime && <p><span className="movie-details-label">Runtime: </span>{this.formatRuntime(currentMovie.runtime)}</p>}
-                  {currentMovie.budget && <p><span className="movie-details-label">Budget: </span>{currentMovie.budget.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
-                  {currentMovie.revenue && <p><span className="movie-details-label">Revenue: </span>{currentMovie.revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
+                  {currentMovie.budget && <p><span className="movie-details-label">Budget: </span>{this.formatCurrency(currentMovie.budget)}</p>}
+                  {currentMovie.revenue && <p><span className="movie-details-label">Revenue: </span>{this.formatCurrency(currentMovie.revenue)}</p>}
                 </div>
               </div>
               {currentMovie.overview &&
