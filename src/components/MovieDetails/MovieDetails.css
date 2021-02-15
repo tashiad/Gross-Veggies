@@ -90,7 +90,7 @@
 }
 
 .movie-overview {
-  width: 30%;
+  width: 40%;
 }
 
 .overview-label {
@@ -104,14 +104,8 @@
   margin-bottom: 0;
 }
 
-.divider {
-  border: 3px solid #F24827;
-  border-radius: 3px;
-  margin: 0 0 3% 0;
-}
-
 .trailer {
-  padding: 0 20% 0 20%;
+  padding: 0 20% 5% 20%;
 }
 
 .trailer-label {

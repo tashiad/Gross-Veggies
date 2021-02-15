@@ -31,7 +31,6 @@ class MovieDetails extends Component {
     if (foundTrailer.site === 'YouTube') {
       return (
         <>
-          <div className="divider"></div>
           <div className="trailer">
             <h3 className="trailer-label">Trailer</h3>
             <Trailer url={`https://www.${foundTrailer.site.toLowerCase()}.com/watch?v=${foundTrailer.key}`} />
@@ -114,7 +113,7 @@ class MovieDetails extends Component {
                 </div>
               }
             </section>
-            {trailer.length ? this.getVideo() : null}
+            {trailer.length && this.getVideo()}
           </>
         }
       </>
