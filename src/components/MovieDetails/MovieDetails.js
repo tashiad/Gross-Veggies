@@ -9,22 +9,24 @@ class MovieDetails extends Component {
     super()
     this.state = {
       currentMovie: {},
-      videos: [], // single video
-      error: '',
-      loading: true // should start as false and then set state in CDM
+      trailer: [],
+      isLoading: false,
+      error: ''
     }
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true })
     fetchSingleMovie(this.props.id)
       .then(currentMovie => this.setState({ currentMovie: currentMovie.movie }))
       .then(() => fetchVideos(this.props.id))
-      .then(videos => this.setState({ videos: videos.videos, loading: false }))
-      .catch(error => this.setState({ currentMovie: '', error: 'Unable to find the movie you were looking for. Please try another movie.', loading: false }))
+      .then(trailer => this.setState({ trailer: trailer.videos }))
+      .catch(error => this.setState({ currentMovie: '', error: error.message }))
+      .finally(() => this.setState({ isLoading: false }))
   }
 
   getVideo = (type) => {
-    const foundVideo = this.state.videos.find(v => v.type === type)
+    const foundVideo = this.state.trailer.find(v => v.type === type)
     return `https://www.${foundVideo.site.toLowerCase()}.com/watch?v=${foundVideo.key}`
   }
 
@@ -51,54 +53,63 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { currentMovie, videos, error, loading } = this.state
+    const { currentMovie, trailer, error, isLoading } = this.state
 
-    if (currentMovie) {
-      return (
-        <>
-          <section className="movie-banner">
-            <img className="movie-backdrop" src={currentMovie.backdrop_path} alt={`backdrop for ${currentMovie.title}`}/>
-            <h2 className="movie-title">{currentMovie.title}</h2>
-          </section>
-          <Link to="/">
-            <button className = "back-button" > ⬅Back < /button>
-          </Link>
-          <section className="full-movie-details">
-            <div className="movie-info-container">
-              <img className="movie-details-poster" src={currentMovie.poster_path} alt={`poster for ${currentMovie.title}`}/>
-              <div className="movie-info">
-                {currentMovie.tagline && <p className="movie-tagline">"{currentMovie.tagline}"</p>}
-                {currentMovie.average_rating && <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating?.toFixed(1)}/10 gross veggies</p>}
-                {currentMovie.genres && <div className="movie-genres-container">{this.formatGenres(currentMovie.genres)}</div>}
-                {currentMovie.release_date && <p><span className="movie-details-label">Release Date: </span>{this.formatDate(currentMovie.release_date)}</p>}
-                {currentMovie.runtime && <p><span className="movie-details-label">Runtime: </span>{this.formatRuntime(currentMovie.runtime)}</p>}
-                {currentMovie.budget && <p><span className="movie-details-label">Budget: </span>{currentMovie.budget.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
-                {currentMovie.revenue && <p><span className="movie-details-label">Revenue: </span>{currentMovie.revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
+    return (
+      <>
+        {isLoading && <h2 className="loading">Loading...</h2>}
+        {error && <h2 className="error-message">{error}</h2>}
+
+        {currentMovie &&
+          <>
+            <section className="movie-banner">
+              <img
+                className="movie-backdrop"
+                src={currentMovie.backdrop_path}
+                alt={`backdrop for ${currentMovie.title}`}
+              />
+              <h2 className="movie-title">{currentMovie.title}</h2>
+            </section>
+            <Link to="/">
+              <button className="back-button"> ⬅ Back < /button>
+            </Link>
+            <section className="full-movie-details">
+              <div className="movie-info-container">
+                <img
+                  className="movie-details-poster"
+                  src={currentMovie.poster_path}
+                  alt={`poster for ${currentMovie.title}`}
+                />
+                <div className="movie-info">
+                  {currentMovie.tagline && <p className="movie-tagline">"{currentMovie.tagline}"</p>}
+                  {currentMovie.average_rating && <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating?.toFixed(1)}/10 gross veggies</p>}
+                  {currentMovie.genres && <div className="movie-genres-container">{this.formatGenres(currentMovie.genres)}</div>}
+                  {currentMovie.release_date && <p><span className="movie-details-label">Release Date: </span>{this.formatDate(currentMovie.release_date)}</p>}
+                  {currentMovie.runtime && <p><span className="movie-details-label">Runtime: </span>{this.formatRuntime(currentMovie.runtime)}</p>}
+                  {currentMovie.budget && <p><span className="movie-details-label">Budget: </span>{currentMovie.budget.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
+                  {currentMovie.revenue && <p><span className="movie-details-label">Revenue: </span>{currentMovie.revenue.toLocaleString("en-US", { style: "currency", currency: "USD" })}</p>}
+                </div>
               </div>
-            </div>
-            {currentMovie.overview &&
-              <div className="movie-overview">
-                <h3 className="overview-label">Overview</h3>
-                <p className="overview-text">{currentMovie.overview}</p>
-              </div>
+              {currentMovie.overview &&
+                <div className="movie-overview">
+                  <h3 className="overview-label">Overview</h3>
+                  <p className="overview-text">{currentMovie.overview}</p>
+                </div>
+              }
+            </section>
+            {trailer.length &&
+              <>
+                <div className="divider"></div>
+                <div className="trailer">
+                  <h3 className="trailer-label">Trailer</h3>
+                  <Trailer url={this.getVideo("Trailer")} />
+                </div>
+              </>
             }
-          </section>
-          {videos.length &&
-            <>
-              <div className="divider"></div>
-              <div className="trailer">
-                <h3 className="trailer-label">Trailer</h3>
-                <Trailer url={this.getVideo("Trailer")} />
-              </div>
-            </>
-          }
-        </>
-      )
-    } else if (error) { // make this like error handling in app
-      return <h2>{error}</h2>
-    } else if (loading) {
-      return <p>Loading...</p>
-    }
+          </>
+        }
+      </>
+    )
   }
 }
 
