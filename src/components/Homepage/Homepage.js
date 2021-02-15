@@ -15,7 +15,6 @@ const Homepage = ({ movies, isLoading, error }) => {
     )
   })
 
-
   return (
     <main>
       {isLoading && <h2 className="loading">Loading movies...</h2>}
