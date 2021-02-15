@@ -21,7 +21,7 @@ class MovieDetails extends Component {
       .then(currentMovie => this.setState({ currentMovie: currentMovie.movie }))
       .then(() => fetchVideos(this.props.id))
       .then(trailer => this.setState({ trailer: trailer.videos }))
-      .catch(error => this.setState({ currentMovie: '', error: error.message }))
+      .catch(error => this.setState({ currentMovie: '', error: `${error.name}: ${error.message}` }))
       .finally(() => this.setState({ isLoading: false }))
   }
 

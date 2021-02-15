@@ -19,7 +19,7 @@ class App extends Component {
     this.setState({ isLoading: true })
     fetchMovies()
     .then(allMovies => this.setState({ movies: allMovies.movies }))
-    .catch(error => this.setState({ error: error.message }))
+    .catch(error => this.setState({ error: `${error.name}: ${error.message}` }))
     .finally(() => this.setState({ isLoading: false }))
   }
 
