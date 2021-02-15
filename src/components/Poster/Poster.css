@@ -1,7 +1,7 @@
 .poster {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
   color: #EDEDEB;
@@ -12,6 +12,7 @@
   font-size: 1vw;
   background-color: rgba(255, 255, 255, 0.1);
   transition: transform 1s;
+  height: 100%;
 }
 
 .poster:hover {
@@ -34,18 +35,22 @@
 .poster-rating {
   color: #F24827;
   font-weight: bold;
-  font-size: 1.3vw;
-  height: 20%;
+  font-size: 1.5vw;
+}
+
+.poster-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .poster-title {
   font-size: 2.5vh;
-  height: 20%;
 }
 
 @media screen and (max-width: 1024px) {
   .poster-rating {
-    font-size: 1.8vw;
+    font-size: 2vw;
   }
 }
 
