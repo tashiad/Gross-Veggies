@@ -25,9 +25,24 @@ class MovieDetails extends Component {
       .finally(() => this.setState({ isLoading: false }))
   }
 
-  getVideo = type => {
-    const foundVideo = this.state.trailer.find(v => v.type === type)
-    return `https://www.${foundVideo.site.toLowerCase()}.com/watch?v=${foundVideo.key}`
+  getVideo = () => {
+    if (this.state.trailer.length) {
+      const foundTrailer = this.state.trailer.find(v => v.type === "Trailer")
+
+      if (foundTrailer.site === 'YouTube') {
+        return (
+          <>
+            <div className="divider"></div>
+            <div className="trailer">
+              <h3 className="trailer-label">Trailer</h3>
+              <Trailer url={`https://www.${foundTrailer.site.toLowerCase()}.com/watch?v=${foundTrailer.key}`} />
+            </div>
+          </>
+        )
+      }
+    } else {
+      return null
+    }
   }
 
   formatGenres = movieGenres => {
@@ -85,31 +100,23 @@ class MovieDetails extends Component {
                   alt={`poster for ${currentMovie.title}`}
                 />
                 <div className="movie-info">
-                  {currentMovie.tagline && <p className="movie-tagline">"{currentMovie.tagline}"</p>}
-                  {currentMovie.average_rating && <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating.toFixed(1)}/10 gross veggies</p>}
-                  {currentMovie.genres && <div className="movie-genres-container">{this.formatGenres(currentMovie.genres)}</div>}
-                  {currentMovie.release_date && <p><span className="movie-details-label">Release Date: </span>{this.formatDate(currentMovie.release_date)}</p>}
-                  {currentMovie.runtime && <p><span className="movie-details-label">Runtime: </span>{this.formatRuntime(currentMovie.runtime)}</p>}
-                  {currentMovie.budget && <p><span className="movie-details-label">Budget: </span>{this.formatCurrency(currentMovie.budget)}</p>}
-                  {currentMovie.revenue && <p><span className="movie-details-label">Revenue: </span>{this.formatCurrency(currentMovie.revenue)}</p>}
+                  {!currentMovie.tagline ? null : <p className="movie-tagline">"{currentMovie.tagline}"</p>}
+                  {!currentMovie.average_rating ? null : <p className="movie-rating"><span className="tomato">🍅</span>{currentMovie.average_rating.toFixed(1)}/10 gross veggies</p>}
+                  {!currentMovie.genres ? null : <div className="movie-genres-container">{this.formatGenres(currentMovie.genres)}</div>}
+                  {!currentMovie.release_date ? null : <p><span className="movie-details-label">Release Date: </span>{this.formatDate(currentMovie.release_date)}</p>}
+                  {!currentMovie.runtime ? null : <p><span className="movie-details-label">Runtime: </span>{this.formatRuntime(currentMovie.runtime)}</p>}
+                  {!currentMovie.budget ? null : <p><span className="movie-details-label">Budget: </span>{this.formatCurrency(currentMovie.budget)}</p>}
+                  {!currentMovie.revenue ? null : <p><span className="movie-details-label">Revenue: </span>{this.formatCurrency(currentMovie.revenue)}</p>}
                 </div>
               </div>
-              {currentMovie.overview &&
+              {!currentMovie.overview ? null :
                 <div className="movie-overview">
                   <h3 className="overview-label">Overview</h3>
                   <p className="overview-text">{currentMovie.overview}</p>
                 </div>
               }
             </section>
-            {trailer.length &&
-              <>
-                <div className="divider"></div>
-                <div className="trailer">
-                  <h3 className="trailer-label">Trailer</h3>
-                  <Trailer url={this.getVideo("Trailer")} />
-                </div>
-              </>
-            }
+            {this.getVideo()}
           </>
         }
       </>
