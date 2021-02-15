@@ -94,9 +94,6 @@
 }
 
 .movie-overview {
-  border: 5px solid #F24827;
-  border-radius: 3px;
-  padding: 2%;
   width: 30%;
 }
 
@@ -109,6 +106,20 @@
 .overview-text {
   line-height: 1.75em;
   margin-bottom: 0;
+}
+
+.divider {
+  border: 3px solid #F24827;
+  border-radius: 3px;
+  margin: 0 0 3% 0;
+}
+
+.trailer {
+  padding: 0 20% 0 20%;
+}
+
+.trailer-label {
+  font-size: 1.5em;
 }
 
 @media screen and (max-width: 768px) {
