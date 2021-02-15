@@ -26,20 +26,18 @@ class MovieDetails extends Component {
   }
 
   getVideo = () => {
-    if (this.state.trailer.length) {
-      const foundTrailer = this.state.trailer.find(v => v.type === "Trailer")
+    const foundTrailer = this.state.trailer.find(v => v.type === "Trailer")
 
-      if (foundTrailer.site === 'YouTube') {
-        return (
-          <>
-            <div className="divider"></div>
-            <div className="trailer">
-              <h3 className="trailer-label">Trailer</h3>
-              <Trailer url={`https://www.${foundTrailer.site.toLowerCase()}.com/watch?v=${foundTrailer.key}`} />
-            </div>
-          </>
-        )
-      }
+    if (foundTrailer.site === 'YouTube') {
+      return (
+        <>
+          <div className="divider"></div>
+          <div className="trailer">
+            <h3 className="trailer-label">Trailer</h3>
+            <Trailer url={`https://www.${foundTrailer.site.toLowerCase()}.com/watch?v=${foundTrailer.key}`} />
+          </div>
+        </>
+      )
     } else {
       return null
     }
@@ -116,7 +114,7 @@ class MovieDetails extends Component {
                 </div>
               }
             </section>
-            {this.getVideo()}
+            {trailer.length ? this.getVideo() : null}
           </>
         }
       </>
