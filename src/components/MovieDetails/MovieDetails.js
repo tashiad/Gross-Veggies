@@ -57,7 +57,7 @@ class MovieDetails extends Component {
 
     return (
       <>
-        {isLoading && <h2 className="loading">Loading...</h2>}
+        {isLoading && <h2 className="loading">Loading movie...</h2>}
         {error && <h2 className="error-message">{error}</h2>}
 
         {currentMovie &&

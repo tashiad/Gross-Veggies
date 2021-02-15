@@ -18,9 +18,9 @@ const Homepage = ({ movies, isLoading, error }) => {
 
   return (
     <main>
+      {isLoading && <h2 className="loading">Loading movies...</h2>}
+      {error && <h2 className="error-message">{error}</h2>}
       <section className="posters-container">
-        {isLoading && <h2 className="loading">Loading movies...</h2>}
-        {error && <h2 className="error-message">{error}</h2>}
         {movies && posterCards}
       </section>
     </main>

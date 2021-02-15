@@ -10,25 +10,6 @@ main {
   margin: 0 5% 0 5%;
 }
 
-.loading {
-  color: #DB0404;
-}
-
-.errors {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.error-message {
-  width: 70%;
-  margin: 3%;
-  text-align: center;
-  border: #DB0404 dashed 3px;
-  border-radius: 3px;
-  padding: 3%;
-}
-
 @media screen and (max-width: 1024px) {
   main {
     padding-bottom: 50%;

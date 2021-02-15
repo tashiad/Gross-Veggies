@@ -33,6 +33,14 @@ h1 {
   pointer-events: none;
 }
 
+.loading,
+.error-message {
+  color: #DB0404;
+  margin: 3%;
+  text-align: center;
+  padding: 3%;
+}
+
 @media screen and (max-width: 1440px) {
   h1 {
     padding: 5% 3% 0 1%;
