@@ -34,9 +34,12 @@ class App extends Component {
         if (movie.average_rating > parseInt(searchCriteria)) {
           return movie
         }
+        return null
       })
     } else if (typeof(searchCriteria) === 'string') {
-      movieList = this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchCriteria))
+      movieList = this.state.movies.filter(movie => {
+        return movie.title.toLowerCase().includes(searchCriteria)
+      })
     }
 
     this.setState({ filteredMovies: movieList })
@@ -53,7 +56,7 @@ class App extends Component {
           exact path="/"
           render={() =>
             <div className='form-and-posters'>
-              <Form filterMovies={this.filterMovies}/>
+              <Form filterMovies={this.filterMovies} />
               <Homepage
                 filteredMovies={filteredMovies}
                 movies={movies}
@@ -66,7 +69,9 @@ class App extends Component {
 
         <Route
           path="/movie/:id"
-          render={({ match }) => <MovieDetails id={match.params.id}/>}
+          render={({ match }) =>
+            <MovieDetails id={match.params.id} />
+          }
         />
       </>
     )
