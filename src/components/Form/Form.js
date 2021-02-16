@@ -31,7 +31,7 @@ class Form extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <button class='search-button'>ENTER</button>
+        <button className='search-button'>ENTER</button>
       </form>
     )
   }
