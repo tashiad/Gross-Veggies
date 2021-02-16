@@ -29,30 +29,22 @@ class App extends Component {
 
   searchByTitle = (searchCriteria) => {
 
+   let movieList
    
-    // const movieList = this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchCriteria))
 
-    // if(typeof searchCriteria === string)
-    const movieList = this.state.movies.filter(movie => {
-      console.log(parseInt(searchCriteria), movie.average_rating)
-      console.log(typeof parseInt(searchCriteria), typeof movie.average_rating)
-      const searchedRating = parseInt(searchCriteria) 
-      if (movie.average_rating > searchedRating) {
-        return movie
-      }
-
-    })
-
-
-    // let movieList = []
-    // this.state.movies.filter(movie => {
-    //   console.log(parseInt(title), movie.average_rating)
-    //   if(movie.average_ratings > parseInt(title)) {
-    //    return movieList.push(movie)
-    //   }
-    //  return movieList
-    // })
-  
+    if(!isNaN(searchCriteria)) {
+      movieList = this.state.movies.filter(movie => {
+        console.log(parseInt(searchCriteria), movie.average_rating)
+        console.log(typeof parseInt(searchCriteria), typeof movie.average_rating)
+        const searchedRating = parseInt(searchCriteria) 
+        if (movie.average_rating > searchedRating) {
+          return movie
+        }
+      })
+    } else if (typeof(searchCriteria) === 'string') {
+      movieList = this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchCriteria))
+    }
+    
     console.log(movieList)
     
     this.setState({

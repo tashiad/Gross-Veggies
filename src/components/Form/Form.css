@@ -1,0 +1,26 @@
+.search-body {
+  color:#DB0404;
+  margin: 5%;
+  display: flex;
+  flex-direction: column; 
+  width: 30vw;
+  font-size: .8em;
+  font-weight: bolder;
+  align-items: center;
+  background-color: #1A1A1A;
+  padding: 2%;
+  border-radius: 8px;
+  align-self: flex-end ;
+}
+
+.search-button {
+  width: 100%;
+  background-color: #F24827;
+  border-radius: 30px;
+  margin-top: 2%;
+}
+
+.input-field {
+  background-color: #7B7C7C ;
+  width: 100%
+}

@@ -20,12 +20,17 @@ class Form extends Component {
 
 render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form  class='search-body'onSubmit={this.handleSubmit}>
         <label>
-          Search:
-          <input type="text" name="name" value={this.state.value} onChange={this.handleChange}/>
+          Search by title or enter your minimum desired movie rating:
+          <input 
+          type="text" 
+          name="name" 
+          class='input-field'
+          value={this.state.value} onChange={this.handleChange}
+          />
         </label>
-        <button>RT</button>
+        <button class='search-button'>RT</button>
       </form>
     )
   }
