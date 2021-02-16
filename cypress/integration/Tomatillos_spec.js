@@ -34,6 +34,7 @@ describe('Homepage', () => {
       .get('.input-field').type('war')
       .get('.search-button').click()
       .get('.poster:first').contains('h2', 'Onward')
+      .get('.poster').should('not.contain', 'Mulan')
   })
 
   it('Should be able to filter by minimum movie rating', () => {
