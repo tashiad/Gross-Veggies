@@ -20,9 +20,10 @@ class Form extends Component {
 
   render() {
     return (
-      <form className='search-body' onSubmit={this.handleSubmit}>
-        <label>Search by title or filter by your minimum desired movie rating:</label>
+      <form className='search-body' id='search-body' onSubmit={this.handleSubmit}>
+        <label for='input-field'>Search by title or filter by your minimum desired movie rating:</label>
         <input
+          aria-label="search-field" 
           type="text"
           name="filter"
           className='input-field'
