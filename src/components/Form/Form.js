@@ -9,28 +9,29 @@ class Form extends Component {
     }
   }
 
+  handleChange = (event) => {
+    this.setState({ value: event.target.value })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.searchByTitle(this.state.value)
+    this.props.filterMovies(this.state.value)
   }
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value})
-  }
-
-render() {
+  render() {
     return (
-      <form  className='search-body'onSubmit={this.handleSubmit}>
+      <form className='search-body' onSubmit={this.handleSubmit}>
         <label>
-          Search by title or enter your minimum desired movie rating:
-          <input 
-          type="text" 
-          name="name" 
-          className='input-field'
-          value={this.state.value} onChange={this.handleChange}
+          Search by title or filter by your minimum desired movie rating:
+          <input
+            type="text"
+            name="filter"
+            className='input-field'
+            value={this.state.value}
+            onChange={this.handleChange}
           />
         </label>
-        <button class='search-button'>RT</button>
+        <button class='search-button'>ENTER</button>
       </form>
     )
   }
