@@ -46,14 +46,16 @@ describe('Homepage', () => {
 })
 
 describe('Movie Details Page', () => {
-  it.skip('Should be able to click on a movie poster', () => {
+  it('Should be able to click on a movie poster', () => {
     cy
+      .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919/videos', {fixture: 'trailer-data.json'})
       .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {fixture: 'single-movie-data.json'})
       .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', {fixture: 'mock-movie-data.json'})
       .visit('http://localhost:3000')
       .get('.poster:first').click()
       .url().should('include', '/movie/694919')
       .get('.movie-title').contains('Test 1')
+      .get('.trailer').contains('Trailer')
   })
 
   it('Should show an error message for a server side error for single movie API', () => {
