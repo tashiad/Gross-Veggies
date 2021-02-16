@@ -1,4 +1,4 @@
-# 🍅 Gross**Veggies**
+# 🍅 GrossVeggies
 ###### Movie ratings and more.
 ---
 ## Table of Contents
@@ -32,7 +32,7 @@ The goals of this project were to:
 
 #### Display Movies
 When the site loads, you'll see an adorable dancing tomato gif, a search box, and a grid of movie posters.
-![Homepage Screenshot](./src/images/homepage.png)
+![Homepage Screenshot](src/images/homepage.png)
     <details>
       <summary>Under the Hood</summary>
       Movies are rendered using `fetch` to request movie data from the API in the `componentDidMount` method in `App`. Then, relevant props are passed down to the `Homepage` and `Poster` components.
@@ -40,7 +40,7 @@ When the site loads, you'll see an adorable dancing tomato gif, a search box, an
 
 #### Search Movie Titles
 Look up a movie quickly by typing the title (or part of one) into the search input and hit `enter` to filter by movie title.
-![Search Screenshot](./src/images/search.png)
+![Search Screenshot](src/images/search.png)
     <details>
       <summary>Under the Hood</summary>
       We created a `Form` component and updated state based on the input value. On submit, the search value is passed up to `App` and runs through a filter method to tell the `Homepage` component what movies it should render.
@@ -48,7 +48,7 @@ Look up a movie quickly by typing the title (or part of one) into the search inp
 
 #### Filter By Rating
 No one wants to watch bad movies! Filter by minimum desired movie rating by typing a number between 1-7 into the search bar and clicking `enter` (the highest rating doesn't go above 7).
-![Rating Screenshot](./src/images/rating.png)
+![Rating Screenshot](src/images/rating.png)
     <details>
       <summary>Under the Hood</summary>
       Works similar to the "Search Movie Titles" feature except that the method in `App` will filter by rating if the search value is a number.
@@ -56,7 +56,7 @@ No one wants to watch bad movies! Filter by minimum desired movie rating by typi
 
 #### View Movie Details
 A user can click on a movie to view more details about it.
-![Movie Details](./src/images/details.png)
+![Movie Details](src/images/details.png)
     <details>
       <summary>Under the Hood</summary>
       Movie details are fetched from a unique API endpoint that matches the id of the poster that was clicked (via Router). In the render, incoming data is formatted to be more readable for the user.
@@ -64,7 +64,7 @@ A user can click on a movie to view more details about it.
 
 #### View Trailers
 When a user clicks on a movie poster to view details, they can play its trailer (embedded from YouTube).
-![Movie Trailer](./src/images/trailer.png)
+![Movie Trailer](src/images/trailer.png)
     <details>
       <summary>Under the Hood</summary>
       Trailers are fetched from a unique API endpoint that matches the id of the current movie. Then, it's rendered using a package called [React Player](https://www.npmjs.com/package/react-player).
