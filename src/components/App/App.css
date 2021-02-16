@@ -13,3 +13,9 @@ dark gray: #1A1A1A */
   text-align: center;
   padding: 3%;
 }
+
+.form-and-posters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

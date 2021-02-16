@@ -30,22 +30,16 @@ class App extends Component {
   searchByTitle = (searchCriteria) => {
 
    let movieList
-   
 
     if(!isNaN(searchCriteria)) {
       movieList = this.state.movies.filter(movie => {
-        console.log(parseInt(searchCriteria), movie.average_rating)
-        console.log(typeof parseInt(searchCriteria), typeof movie.average_rating)
-        const searchedRating = parseInt(searchCriteria) 
-        if (movie.average_rating > searchedRating) {
+        if (movie.average_rating > parseInt(searchCriteria)) {
           return movie
         }
       })
     } else if (typeof(searchCriteria) === 'string') {
       movieList = this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchCriteria))
     }
-    
-    console.log(movieList)
     
     this.setState({
       searchedTitles: movieList
@@ -62,7 +56,7 @@ class App extends Component {
         <Route
           exact path="/"
           render={() =>
-            <>
+            <div className='form-and-posters'>
               <Form searchByTitle={this.searchByTitle}/>
               <Homepage
                 searchedTitles={searchedTitles}
@@ -70,7 +64,7 @@ class App extends Component {
                 isLoading={isLoading}
                 error={error}
               />
-            </>
+            </div>
           }
         />
 
