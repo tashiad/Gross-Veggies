@@ -21,16 +21,14 @@ class Form extends Component {
   render() {
     return (
       <form className='search-body' onSubmit={this.handleSubmit}>
-        <label>
-          Search by title or filter by your minimum desired movie rating:
-          <input
-            type="text"
-            name="filter"
-            className='input-field'
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
+        <label>Search by title or filter by your minimum desired movie rating:</label>
+        <input
+          type="text"
+          name="filter"
+          className='input-field'
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
         <button className='search-button'>ENTER</button>
       </form>
     )
