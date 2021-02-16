@@ -2,7 +2,7 @@ describe('Homepage', () => {
   it('Should have correct header and subheader', () => {
     cy
       .visit('http://localhost:3000')
-      .get('header').contains('h1', 'RancidTomatillos')
+      .get('header').contains('h1', 'GrossVeggies')
       .get('header').contains('h2', 'Movie ratings and more.')
   })
 
@@ -25,7 +25,7 @@ describe('Homepage', () => {
         statusCode: 500
       })
       .visit('http://localhost:3000')
-      .get('.error-message').contains('h2', 'Unable to reach movie database.')
+      .get('.error-message').contains('h2', 'Unable to find movies.')
   })
 })
 
@@ -50,7 +50,7 @@ describe('Movie Details Page', () => {
         statusCode: 500
       })
       .visit('http://localhost:3000/movie/694919')
-      .get('h2').contains('Unable to find the movie you were looking for.')
+      .get('h2').contains('Unable to find movie.')
   })
 
   it('Should show an error message for a nonexistent movie id', () => {
@@ -63,7 +63,7 @@ describe('Movie Details Page', () => {
         statusCode: 404
       })
       .visit('http://localhost:3000/movie/5')
-      .get('h2').contains('Unable to find the movie you were looking for.')
+      .get('h2').contains('Unable to find movie.')
   })
 
   it('Should have a funtional back button from the movie details page', () => {
