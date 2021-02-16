@@ -12,7 +12,7 @@ class App extends Component {
     super()
     this.state = {
       movies: [],
-      searchedTitles: [],
+      filteredMovies: [],
       isLoading: false,
       error: ''
     }
@@ -26,40 +26,39 @@ class App extends Component {
     .finally(() => this.setState({ isLoading: false }))
   }
 
-
-  searchByTitle = (searchCriteria) => {
-
-   let movieList
+  filterMovies = (searchCriteria) => {
+    let movieList
 
     if(!isNaN(searchCriteria)) {
       movieList = this.state.movies.filter(movie => {
         if (movie.average_rating > parseInt(searchCriteria)) {
           return movie
         }
+        return null
       })
     } else if (typeof(searchCriteria) === 'string') {
-      movieList = this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchCriteria))
+      movieList = this.state.movies.filter(movie => {
+        return movie.title.toLowerCase().includes(searchCriteria)
+      })
     }
-    
-    this.setState({
-      searchedTitles: movieList
-    })
+
+    this.setState({ filteredMovies: movieList })
   }
 
   render() {
-    const { movies, isLoading, error, searchedTitles } = this.state
+    const { movies, isLoading, error, filteredMovies } = this.state
 
     return(
       <>
         <Header />
-       
+
         <Route
           exact path="/"
           render={() =>
             <div className='form-and-posters'>
-              <Form searchByTitle={this.searchByTitle}/>
+              <Form filterMovies={this.filterMovies} />
               <Homepage
-                searchedTitles={searchedTitles}
+                filteredMovies={filteredMovies}
                 movies={movies}
                 isLoading={isLoading}
                 error={error}
@@ -70,7 +69,9 @@ class App extends Component {
 
         <Route
           path="/movie/:id"
-          render={({ match }) => <MovieDetails id={match.params.id}/>}
+          render={({ match }) =>
+            <MovieDetails id={match.params.id} />
+          }
         />
       </>
     )

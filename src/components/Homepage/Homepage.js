@@ -2,11 +2,10 @@ import React from 'react'
 import './Homepage.css'
 import Poster from '../Poster/Poster'
 
-const Homepage = ({ movies, isLoading, error, searchedTitles }) => {
-  
-  const moviesToShow = searchedTitles.length ? searchedTitles : movies
-  
-  
+const Homepage = ({ movies, isLoading, error, filteredMovies }) => {
+
+  const moviesToShow = filteredMovies.length ? filteredMovies : movies
+
   const posterCards = moviesToShow.map(movie => {
     return (
       <Poster
