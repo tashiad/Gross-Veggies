@@ -32,7 +32,9 @@ The goals of this project were to:
 
 #### Display Movies
 When the site loads, you'll see an adorable dancing tomato gif, a search box, and a grid of movie posters.
-![Homepage Screenshot](src/images/homepage.png)
+<p align = "center">
+<img width="1440" alt="homepage" src="https://user-images.githubusercontent.com/66852774/108132850-ccd39b00-7070-11eb-869c-a26e0bb65d88.png">
+</p>
     <details>
       <summary>Under the Hood</summary>
       Movies are rendered using `fetch` to request movie data from the API in the `componentDidMount` method in `App`. Then, relevant props are passed down to the `Homepage` and `Poster` components.
@@ -40,7 +42,9 @@ When the site loads, you'll see an adorable dancing tomato gif, a search box, an
 
 #### Search Movie Titles
 Look up a movie quickly by typing the title (or part of one) into the search input and hit `enter` to filter by movie title.
-![Search Screenshot](src/images/search.png)
+<p align = "center">
+<img width="1440" alt="search" src="https://user-images.githubusercontent.com/66852774/108133044-23d97000-7071-11eb-9e43-c827ce305f2e.png">
+</p>
     <details>
       <summary>Under the Hood</summary>
       We created a `Form` component and updated state based on the input value. On submit, the search value is passed up to `App` and runs through a filter method to tell the `Homepage` component what movies it should render.
@@ -48,7 +52,9 @@ Look up a movie quickly by typing the title (or part of one) into the search inp
 
 #### Filter By Rating
 No one wants to watch bad movies! Filter by minimum desired movie rating by typing a number between 1-7 into the search bar and clicking `enter` (the highest rating doesn't go above 7).
-![Rating Screenshot](src/images/rating.png)
+<p align = "center">
+<img width="1440" alt="rating" src="https://user-images.githubusercontent.com/66852774/108133090-3784d680-7071-11eb-8d2d-87abdd0ad613.png">
+</p>
     <details>
       <summary>Under the Hood</summary>
       Works similar to the "Search Movie Titles" feature except that the method in `App` will filter by rating if the search value is a number.
@@ -56,7 +62,9 @@ No one wants to watch bad movies! Filter by minimum desired movie rating by typi
 
 #### View Movie Details
 A user can click on a movie to view more details about it.
-![Movie Details](src/images/details.png)
+<p align = "center">
+<img width="1440" alt="details" src="https://user-images.githubusercontent.com/66852774/108133124-466b8900-7071-11eb-9c24-17c3d3c76f49.png">
+</p>
     <details>
       <summary>Under the Hood</summary>
       Movie details are fetched from a unique API endpoint that matches the id of the poster that was clicked (via Router). In the render, incoming data is formatted to be more readable for the user.
@@ -64,7 +72,9 @@ A user can click on a movie to view more details about it.
 
 #### View Trailers
 When a user clicks on a movie poster to view details, they can play its trailer (embedded from YouTube).
-![Movie Trailer](src/images/trailer.png)
+<p align = "center">
+<img width="1440" alt="trailer" src="https://user-images.githubusercontent.com/66852774/108133164-57b49580-7071-11eb-954c-45fc2b7f70c6.png">
+</p>
     <details>
       <summary>Under the Hood</summary>
       Trailers are fetched from a unique API endpoint that matches the id of the current movie. Then, it's rendered using a package called [React Player](https://www.npmjs.com/package/react-player).
