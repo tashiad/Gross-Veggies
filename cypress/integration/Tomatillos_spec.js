@@ -27,10 +27,24 @@ describe('Homepage', () => {
       .visit('http://localhost:3000')
       .get('.error-message').contains('h2', 'Unable to find movies.')
   })
+
+  it('Should be able to search by movie title', () => {
+    cy
+      .visit('http://localhost:3000')
+      .get('.input-field').type('war')
+      .get('.search-button').click()
+      .get('.poster:first').contains('h2', 'Onward')
+  })
+
+  it.skip('Should be able to filter by minimum movie rating', () => {
+    cy
+      .visit('http://localhost:3000')
+      .get('header').contains('h1', 'GrossVeggies')
+  })
 })
 
 describe('Movie Details Page', () => {
-  it('Should be able to click on a movie poster', () => {
+  it.skip('Should be able to click on a movie poster', () => {
     cy
       .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies/694919', {fixture: 'single-movie-data.json'})
       .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', {fixture: 'mock-movie-data.json'})
