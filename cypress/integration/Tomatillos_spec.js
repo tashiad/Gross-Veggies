@@ -36,10 +36,12 @@ describe('Homepage', () => {
       .get('.poster:first').contains('h2', 'Onward')
   })
 
-  it.skip('Should be able to filter by minimum movie rating', () => {
+  it('Should be able to filter by minimum movie rating', () => {
     cy
       .visit('http://localhost:3000')
-      .get('header').contains('h1', 'GrossVeggies')
+      .get('.input-field').type('6')
+      .get('.search-button').click()
+      .get('.poster').should('not.contain', 'Mulan')
   })
 })
 
