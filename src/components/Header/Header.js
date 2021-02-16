@@ -13,7 +13,7 @@ const Header = () => {
           className="giphy-embed"
           title="dancing-tomato">
         </iframe>
-        <h1>Rancid<span className="tomatillos">Tomatillos</span></h1>
+        <h1>Gross<span className="tomatillos">Veggies</span></h1>
       </div>
       <h2>Movie ratings and more.</h2>
     </header>

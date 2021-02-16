@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from '../Header/Header'
+import Form from '../Form/Form'
 import Homepage from '../Homepage/Homepage'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import { Route } from 'react-router-dom'
@@ -11,6 +12,7 @@ class App extends Component {
     super()
     this.state = {
       movies: [],
+      searchedTitles: [],
       isLoading: false,
       error: ''
     }
@@ -24,21 +26,45 @@ class App extends Component {
     .finally(() => this.setState({ isLoading: false }))
   }
 
+
+  searchByTitle = (searchCriteria) => {
+
+   let movieList
+
+    if(!isNaN(searchCriteria)) {
+      movieList = this.state.movies.filter(movie => {
+        if (movie.average_rating > parseInt(searchCriteria)) {
+          return movie
+        }
+      })
+    } else if (typeof(searchCriteria) === 'string') {
+      movieList = this.state.movies.filter(movie => movie.title.toLowerCase().includes(searchCriteria))
+    }
+    
+    this.setState({
+      searchedTitles: movieList
+    })
+  }
+
   render() {
-    const { movies, isLoading, error } = this.state
+    const { movies, isLoading, error, searchedTitles } = this.state
 
     return(
       <>
         <Header />
-
+       
         <Route
           exact path="/"
           render={() =>
-            <Homepage
-              movies={movies}
-              isLoading={isLoading}
-              error={error}
-            />
+            <div className='form-and-posters'>
+              <Form searchByTitle={this.searchByTitle}/>
+              <Homepage
+                searchedTitles={searchedTitles}
+                movies={movies}
+                isLoading={isLoading}
+                error={error}
+              />
+            </div>
           }
         />
 

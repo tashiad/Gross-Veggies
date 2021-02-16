@@ -2,8 +2,12 @@ import React from 'react'
 import './Homepage.css'
 import Poster from '../Poster/Poster'
 
-const Homepage = ({ movies, isLoading, error }) => {
-  const posterCards = movies.map(movie => {
+const Homepage = ({ movies, isLoading, error, searchedTitles }) => {
+  
+  const moviesToShow = searchedTitles.length ? searchedTitles : movies
+  
+  
+  const posterCards = moviesToShow.map(movie => {
     return (
       <Poster
         key={movie.id}
