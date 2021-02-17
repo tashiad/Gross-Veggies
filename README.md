@@ -37,7 +37,7 @@ When the site loads, you'll see an adorable dancing tomato gif, a search box, an
 </p>
     <details>
       <summary>Under the Hood</summary>
-      Movies are rendered using `fetch` to request movie data from the API in the `componentDidMount` method in `App`. Then, relevant props are passed down to the `Homepage` and `Poster` components.
+    Movies are rendered using <code>fetch</code> to request movie data from the API in the <code>componentDidMount</code> method in <code>App</code>. Then, relevant props are passed down to the <code>Homepage</code> and <code>Poster</code> components.
     </details>
 
 #### Search Movie Titles
@@ -47,7 +47,7 @@ Look up a movie quickly by typing the title (or part of one) into the search inp
 </p>
     <details>
       <summary>Under the Hood</summary>
-      We created a `Form` component and updated state based on the input value. On submit, the search value is passed up to `App` and runs through a filter method to tell the `Homepage` component what movies it should render.
+      We created a <code>Form</code> component and updated state based on the input value. On submit, the search value is passed up to <code>App</code> and runs through a filter method to tell the <code>Homepage</code> component what movies it should render.
     </details>
 
 #### Filter By Rating
@@ -57,7 +57,7 @@ No one wants to watch bad movies! Filter by minimum desired movie rating by typi
 </p>
     <details>
       <summary>Under the Hood</summary>
-      Works similar to the "Search Movie Titles" feature except that the method in `App` will filter by rating if the search value is a number.
+      Works similar to the "Search Movie Titles" feature except that the method in <code>App</code> will filter by rating if the search value is a number.
     </details>
 
 #### View Movie Details
@@ -77,7 +77,7 @@ When a user clicks on a movie poster to view details, they can play its trailer 
 </p>
     <details>
       <summary>Under the Hood</summary>
-      Trailers are fetched from a unique API endpoint that matches the id of the current movie. Then, it's rendered using a package called [React Player](https://www.npmjs.com/package/react-player).
+      Trailers are fetched from a unique API endpoint that matches the id of the current movie. Then, it's rendered using a package called <a href="https://www.npmjs.com/package/react-player">React Player</a>.
     </details>
 
 #### React Router
