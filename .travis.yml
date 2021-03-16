@@ -9,6 +9,6 @@ install:
   - npm ci
   - npm run build
 before_script:
-  - npm start -- --silent &
+  - npm start & wait-on http://localhost:3000
 script:
   - $(npm bin)/cypress run
